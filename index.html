@@ -15,6 +15,7 @@
     --blue-light: #5a9bd5;
     --blue-pale: #e9f0f8;
     --blue-wash: #f3f7fb;
+    --lavender: #eef1f7;
     --white: #ffffff;
     --text: #2c3e50;
     --text-light: #5d6d7e;
@@ -23,24 +24,25 @@
     --bg: #f5f7fa;
     --err-red: #c0392b;
     --err-bg: #fdf0ef;
-    --err-border: #e6b0aa;
     --warn-amber: #7d6608;
     --warn-bg: #fef9e7;
-    --warn-border: #f0e08a;
+    --warn-border: #d4b94e;
     --success: #27874a;
-    --success-bg: #eef7f0;
     --gold: #c49a2a;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --radius-xs: 8px;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
     font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: var(--bg);
+    background: var(--white);
     color: var(--text);
     line-height: 1.6;
     font-size: 16px;
-    padding: 0;
+    padding: 24px 16px 48px;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -51,12 +53,14 @@
     background: var(--navy);
     color: var(--white);
     padding: 36px 40px;
+    border-radius: var(--radius);
+    margin-bottom: 32px;
   }
   .header-label {
     font-size: 14px;
     font-weight: 400;
     letter-spacing: 0.5px;
-    opacity: 0.8;
+    opacity: 0.75;
     margin-bottom: 8px;
   }
   .header h1 {
@@ -70,34 +74,28 @@
     font-size: 15px;
     font-weight: 300;
     opacity: 0.88;
-    max-width: 580px;
-    line-height: 1.5;
-  }
-  /* ===================== BODY AREA ===================== */
-  .body-area {
-    padding: 32px 40px 48px;
-    background: var(--white);
-    min-height: 200px;
+    max-width: 600px;
+    line-height: 1.55;
   }
 
   /* ===================== INTRO ===================== */
   .intro {
-    margin-bottom: 32px;
-    max-width: 680px;
+    margin-bottom: 36px;
+    max-width: 720px;
   }
   .intro p {
     font-size: 15px;
     color: var(--text);
-    margin-bottom: 12px;
-    line-height: 1.65;
+    margin-bottom: 14px;
+    line-height: 1.7;
   }
   .intro p:last-child { margin-bottom: 0; }
 
   .how-box {
-    background: var(--blue-wash);
-    border: 1px solid var(--border-light);
-    border-radius: 6px;
-    padding: 20px 24px;
+    background: var(--lavender);
+    border-left: 4px solid var(--navy);
+    border-radius: var(--radius-xs);
+    padding: 22px 26px;
     margin-top: 20px;
   }
   .how-box h3 {
@@ -110,26 +108,25 @@
   }
   .how-box ol {
     padding-left: 18px;
-    font-size: 14px;
+    font-size: 14.5px;
     color: var(--text);
   }
   .how-box li {
-    margin-bottom: 6px;
-    line-height: 1.5;
+    margin-bottom: 7px;
+    line-height: 1.55;
   }
   .how-box li:last-child { margin-bottom: 0; }
 
-  /* ===================== DIVIDER ===================== */
+  /* ===================== SECTION DIVIDER ===================== */
   .section-divider {
     border: none;
-    border-top: 1px solid var(--border-light);
-    margin: 32px 0;
+    border-top: 2px solid var(--navy);
+    margin: 36px 0;
   }
 
-  /* ===================== STEP SECTIONS ===================== */
-  .step {
-    margin-bottom: 36px;
-  }
+  /* ===================== STEPS ===================== */
+  .step { margin-bottom: 40px; }
+
   .step-header {
     display: flex;
     align-items: center;
@@ -140,40 +137,32 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background: var(--navy);
     color: var(--white);
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
     flex-shrink: 0;
   }
-  .step-badge.complete {
-    background: var(--success);
-  }
-  .step-badge.complete::after {
-    content: "✓";
-    font-size: 15px;
-  }
+  .step-badge.complete { background: var(--success); }
+  .step-badge.complete::after { content: "✓"; font-size: 16px; }
   .step-badge.complete span { display: none; }
 
   .step h2 {
-    font-size: 20px;
-    font-weight: 400;
+    font-size: 22px;
+    font-weight: 300;
     color: var(--navy);
-    letter-spacing: -0.2px;
   }
   .step-desc {
-    font-size: 14px;
+    font-size: 14.5px;
     color: var(--text-light);
-    margin-bottom: 18px;
-    padding-left: 44px;
-    line-height: 1.55;
+    margin-bottom: 20px;
+    padding-left: 46px;
+    line-height: 1.6;
   }
-  .step-content {
-    padding-left: 44px;
-  }
+  .step-content { padding-left: 46px; }
 
   /* ===================== FORM ELEMENTS ===================== */
   .fields {
@@ -182,10 +171,7 @@
     flex-wrap: wrap;
     margin-bottom: 8px;
   }
-  .field {
-    flex: 1 1 180px;
-    min-width: 150px;
-  }
+  .field { flex: 1 1 180px; min-width: 150px; }
   .field label {
     display: block;
     font-size: 13px;
@@ -195,47 +181,41 @@
   }
   select {
     width: 100%;
-    padding: 9px 11px;
+    padding: 10px 12px;
     font-family: inherit;
     font-size: 15px;
-    border: 1px solid var(--border);
-    border-radius: 5px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-xs);
     background: var(--white);
     color: var(--text);
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235d6d7e' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 12px center;
-    padding-right: 32px;
+    padding-right: 34px;
     cursor: pointer;
     transition: border-color 0.15s;
   }
   select:hover { border-color: var(--blue-light); }
   select:focus {
     outline: none;
-    border-color: var(--blue);
-    box-shadow: 0 0 0 3px rgba(61,111,165,0.15);
-  }
-  select.has-error {
-    border-color: var(--err-red);
-  }
-  select.has-error:focus {
-    box-shadow: 0 0 0 3px rgba(192,57,43,0.12);
+    border-color: var(--navy);
+    box-shadow: 0 0 0 3px rgba(26,39,68,0.1);
   }
 
   /* ===================== RADIO CARDS ===================== */
   .radio-cards {
     display: flex;
-    gap: 12px;
+    gap: 14px;
     flex-wrap: wrap;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
   }
   .radio-card {
     flex: 1 1 280px;
     min-width: 240px;
-    border: 1.5px solid var(--border);
-    border-radius: 6px;
-    padding: 14px 16px;
+    border: 2px solid var(--navy);
+    border-radius: var(--radius);
+    padding: 16px 18px;
     cursor: pointer;
     transition: all 0.12s;
     background: var(--white);
@@ -243,13 +223,10 @@
     gap: 12px;
     align-items: flex-start;
   }
-  .radio-card:hover {
-    border-color: var(--blue-light);
-    background: var(--blue-wash);
-  }
+  .radio-card:hover { background: var(--lavender); }
   .radio-card.selected {
-    border-color: var(--navy);
-    background: var(--blue-pale);
+    background: var(--lavender);
+    box-shadow: inset 0 0 0 1px var(--navy);
   }
   .radio-card input[type="radio"] {
     margin-top: 4px;
@@ -266,14 +243,14 @@
   .radio-card-def {
     font-size: 13px;
     color: var(--text-light);
-    line-height: 1.45;
+    line-height: 1.5;
   }
 
   /* ===================== CHECKLIST ===================== */
   .checklist-controls {
     display: flex;
-    gap: 12px;
-    margin-bottom: 10px;
+    gap: 14px;
+    margin-bottom: 12px;
   }
   .text-btn {
     background: none;
@@ -290,13 +267,13 @@
   .checklist {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
-    gap: 8px;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 10px;
   }
   .checklist li {
-    border: 1.5px solid var(--border);
-    border-radius: 6px;
-    padding: 10px 14px;
+    border: 2px solid var(--navy);
+    border-radius: var(--radius-xs);
+    padding: 11px 14px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -304,14 +281,12 @@
     cursor: pointer;
     transition: all 0.1s;
     user-select: none;
+    background: var(--white);
   }
-  .checklist li:hover {
-    border-color: var(--blue-light);
-    background: var(--blue-wash);
-  }
+  .checklist li:hover { background: var(--lavender); }
   .checklist li input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
+    width: 17px;
+    height: 17px;
     cursor: pointer;
     accent-color: var(--navy);
     flex-shrink: 0;
@@ -325,29 +300,29 @@
   .funded-count {
     font-size: 13px;
     color: var(--text-light);
-    margin-top: 10px;
+    margin-top: 12px;
   }
   .funded-count strong { color: var(--navy); }
 
   .placeholder-box {
-    background: var(--blue-wash);
-    border: 1.5px dashed var(--border);
-    border-radius: 6px;
-    padding: 24px 20px;
+    background: var(--lavender);
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 28px 24px;
     color: var(--text-light);
-    font-size: 14px;
+    font-size: 14.5px;
     text-align: center;
   }
 
   /* ===================== MESSAGES ===================== */
   .msg {
-    padding: 10px 14px;
-    border-radius: 5px;
+    padding: 12px 16px;
+    border-radius: var(--radius-xs);
     font-size: 14px;
-    margin-top: 10px;
-    border-left: 3px solid;
+    margin-top: 12px;
+    border-left: 4px solid;
     display: none;
-    line-height: 1.5;
+    line-height: 1.55;
   }
   .msg.visible { display: block; }
   .msg.error {
@@ -357,12 +332,12 @@
   }
   .msg.warn {
     background: var(--warn-bg);
-    border-left-color: var(--gold);
+    border-left-color: var(--warn-border);
     color: var(--warn-amber);
   }
   .msg.info {
-    background: var(--blue-pale);
-    border-left-color: var(--blue);
+    background: var(--lavender);
+    border-left-color: var(--navy);
     color: var(--text);
   }
 
@@ -373,8 +348,8 @@
   .results {
     background: var(--navy);
     color: var(--white);
-    padding: 28px 32px;
-    border-radius: 8px;
+    padding: 30px 34px;
+    border-radius: var(--radius);
     margin-top: 8px;
   }
   .results-top {
@@ -386,21 +361,20 @@
     flex-wrap: wrap;
   }
   .results h2 {
-    font-size: 18px;
-    font-weight: 400;
+    font-size: 20px;
+    font-weight: 300;
     color: var(--white);
-    letter-spacing: -0.1px;
   }
   .results-actions { display: flex; gap: 8px; }
 
   .btn {
     font-family: inherit;
     font-size: 13px;
-    padding: 7px 14px;
-    border-radius: 4px;
+    padding: 8px 16px;
+    border-radius: var(--radius-xs);
     cursor: pointer;
     transition: background 0.12s;
-    border: 1px solid;
+    border: 2px solid;
   }
   .btn-ghost {
     background: transparent;
@@ -410,30 +384,31 @@
   .btn-ghost:hover { background: rgba(255,255,255,0.12); }
   .btn-outline {
     background: var(--white);
-    border-color: var(--border);
-    color: var(--text);
+    border-color: var(--navy);
+    color: var(--navy);
+    border-radius: var(--radius-xs);
   }
-  .btn-outline:hover { background: var(--blue-wash); }
+  .btn-outline:hover { background: var(--lavender); }
 
   .results-summary {
     font-size: 15px;
     font-weight: 300;
-    line-height: 1.6;
+    line-height: 1.65;
     opacity: 0.92;
-    margin-bottom: 20px;
-    padding-bottom: 18px;
+    margin-bottom: 22px;
+    padding-bottom: 20px;
     border-bottom: 1px solid rgba(255,255,255,0.15);
   }
 
   .results-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 14px;
   }
   .r-card {
     background: rgba(255,255,255,0.07);
-    padding: 16px 18px;
-    border-radius: 6px;
+    padding: 18px 20px;
+    border-radius: var(--radius-sm);
     border-left: 3px solid var(--blue-light);
   }
   .r-label {
@@ -455,27 +430,21 @@
     margin-top: 5px;
     line-height: 1.35;
   }
-
   .results-notices { margin-top: 14px; }
-  .results-notices .msg {
-    background: rgba(255,255,255,0.08);
-    border-left-color: var(--blue-light);
-    color: var(--white);
-  }
 
   /* ===================== LEARN MORE ===================== */
   .learn-more {
-    border: 1px solid var(--border-light);
-    border-radius: 6px;
-    margin-top: 32px;
+    border: 2px solid var(--navy);
+    border-radius: var(--radius);
+    margin-top: 36px;
     overflow: hidden;
     background: var(--white);
   }
   .learn-more summary {
-    padding: 16px 22px;
+    padding: 18px 24px;
     cursor: pointer;
-    font-size: 15px;
-    font-weight: 400;
+    font-size: 16px;
+    font-weight: 300;
     color: var(--navy);
     list-style: none;
     display: flex;
@@ -486,47 +455,46 @@
   .learn-more summary::-webkit-details-marker { display: none; }
   .learn-more summary::after {
     content: "+";
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 300;
-    color: var(--blue);
+    color: var(--navy);
   }
   .learn-more[open] summary::after { content: "−"; }
-  .learn-more summary:hover { background: var(--blue-wash); }
+  .learn-more summary:hover { background: var(--lavender); }
 
   .learn-body {
-    padding: 0 22px 20px;
+    padding: 0 24px 24px;
     border-top: 1px solid var(--border-light);
   }
   .learn-body h4 {
     font-size: 14px;
     font-weight: 700;
     color: var(--navy);
-    margin: 18px 0 6px;
-    letter-spacing: 0.2px;
+    margin: 20px 0 6px;
   }
   .learn-body p {
-    font-size: 14px;
-    margin: 0 0 8px;
-    line-height: 1.6;
+    font-size: 14.5px;
+    margin: 0 0 10px;
+    line-height: 1.65;
     color: var(--text);
   }
   .learn-body ul {
     padding-left: 20px;
-    font-size: 14px;
-    margin: 4px 0 8px;
+    font-size: 14.5px;
+    margin: 4px 0 10px;
     color: var(--text);
   }
   .learn-body li { margin-bottom: 4px; }
 
-  /* ===================== FOOTER AREA ===================== */
+  /* ===================== CONTACT ===================== */
   .contact-block {
-    background: var(--blue-wash);
-    border: 1px solid var(--border-light);
-    border-radius: 6px;
-    padding: 18px 22px;
+    border: 2px solid var(--navy);
+    border-radius: var(--radius);
+    padding: 22px 26px;
     margin-top: 24px;
-    font-size: 14px;
-    line-height: 1.55;
+    font-size: 14.5px;
+    line-height: 1.6;
+    background: var(--white);
   }
   .contact-block strong { color: var(--navy); }
   .contact-block a {
@@ -536,13 +504,14 @@
   }
   .contact-block a:hover { text-decoration: underline; }
 
+  /* ===================== DISCLAIMER ===================== */
   .disclaimer-block {
-    margin-top: 16px;
+    margin-top: 20px;
     font-size: 12.5px;
     color: var(--text-light);
-    line-height: 1.6;
-    padding: 16px 0;
-    border-top: 1px solid var(--border-light);
+    line-height: 1.65;
+    padding: 18px 0;
+    border-top: 2px solid var(--navy);
   }
   .disclaimer-block strong { color: var(--text); }
 
@@ -551,16 +520,16 @@
     font-size: 12px;
     color: var(--text-light);
     padding: 20px 0 0;
-    opacity: 0.7;
+    opacity: 0.6;
   }
 
   /* ===================== RESPONSIVE ===================== */
   @media (max-width: 600px) {
-    .header { padding: 28px 20px; }
+    body { padding: 12px 8px 36px; }
+    .header { padding: 28px 22px; border-radius: var(--radius-sm); }
     .header h1 { font-size: 26px; }
-    .body-area { padding: 24px 20px 36px; }
     .step-content, .step-desc { padding-left: 0; }
-    .results { padding: 22px 18px; }
+    .results { padding: 22px 18px; border-radius: var(--radius-sm); }
     .results-grid { grid-template-columns: 1fr; }
     .r-value { font-size: 20px; }
   }
@@ -572,22 +541,22 @@
       background: var(--white) !important;
       color: var(--navy) !important;
       padding: 0 0 16px;
+      border: none;
       border-bottom: 2px solid var(--navy);
+      border-radius: 0;
     }
     .header-label, .header-sub { color: var(--navy) !important; opacity: 1; }
     .header h1 { color: var(--navy) !important; }
-    .body-area { padding: 20px 0; }
-    .card { box-shadow: none; }
     .how-box, .contact-block { display: none; }
     .results {
       background: var(--white) !important;
       color: var(--navy) !important;
       border: 2px solid var(--navy);
+      box-shadow: none;
       page-break-inside: avoid;
     }
     .results h2, .r-label, .r-value, .r-sub, .results-summary { color: var(--navy) !important; opacity: 1; }
     .r-card { background: var(--blue-pale) !important; }
-    .results-notices .msg { color: var(--navy) !important; background: var(--blue-pale) !important; }
     .btn, .results-actions, .learn-more, .checklist-controls { display: none !important; }
     .checklist li.checked { background: var(--navy) !important; color: var(--white) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .reset-row { display: none; }
@@ -605,217 +574,213 @@
     <div class="header-sub">Plan ahead by estimating how much service you will owe, when it must begin, and when you could finish, based on your funded semesters and expected service plan.</div>
   </div>
 
-  <!-- BODY -->
-  <div class="body-area">
+  <!-- INTRO -->
+  <div class="intro">
+    <p>As a Cohen Scholar, you commit to a post-graduation service obligation in exchange for tuition support. The amount of service you will owe depends on how many Fall and Spring semesters receive Cohen funding. This calculator helps you plan ahead by estimating your obligation based on your expected timeline and funding.</p>
+    <p>Nothing you enter here is saved, stored, or sent anywhere. Everything stays in your browser window.</p>
 
-    <!-- INTRO -->
-    <div class="intro">
-      <p>As a Cohen Scholar, you commit to a post-graduation service obligation in exchange for tuition support. The amount of service you will owe depends on how many Fall and Spring semesters receive Cohen funding. This calculator helps you plan ahead by estimating your obligation based on your expected timeline and funding.</p>
-      <p>Nothing you enter here is saved, stored, or sent anywhere. Everything stays in your browser window.</p>
-
-      <div class="how-box">
-        <h3>How to Use This Calculator</h3>
-        <ol>
-          <li><strong>Enter your program timeline</strong> so the calculator knows which semesters fall within your program.</li>
-          <li><strong>Check your funded semesters.</strong> Only Fall and Spring semesters appear. Summers are excluded because they do not count toward service obligation. Check the semesters you have received or expect to receive Cohen funding.</li>
-          <li><strong>Enter your service plan,</strong> including whether you will serve full-time or part-time and when you start.</li>
-          <li><strong>Review your results</strong> below. You can print or save as a PDF to bring to a mentoring meeting.</li>
-        </ol>
-      </div>
+    <div class="how-box">
+      <h3>How to Use This Calculator</h3>
+      <ol>
+        <li><strong>Enter your program timeline</strong> so the calculator knows which semesters fall within your program.</li>
+        <li><strong>Check your funded semesters.</strong> Only Fall and Spring semesters appear. Summers are excluded because they do not count toward service obligation. Check the semesters you have received or expect to receive Cohen funding.</li>
+        <li><strong>Enter your service plan,</strong> including whether you will serve full-time or part-time and when you expect to start.</li>
+        <li><strong>Review your results</strong> below. You can print or save as a PDF to bring to a mentoring meeting.</li>
+      </ol>
     </div>
+  </div>
 
-    <hr class="section-divider">
+  <hr class="section-divider">
 
-    <!-- STEP 1 -->
-    <div class="step" id="step1">
-      <div class="step-header">
-        <div class="step-badge" id="badge1"><span>1</span></div>
-        <h2>Your Program Timeline</h2>
-      </div>
-      <p class="step-desc">Select the semester you began your graduate nursing program and the semester you expect to graduate.</p>
-      <div class="step-content">
-        <div class="fields">
-          <div class="field">
-            <label for="start-sem">Start semester</label>
-            <select id="start-sem"><option value="">Select...</option><option value="Spring">Spring</option><option value="Summer">Summer</option><option value="Fall">Fall</option></select>
-          </div>
-          <div class="field">
-            <label for="start-year">Start year</label>
-            <select id="start-year"><option value="">Select...</option></select>
-          </div>
-          <div class="field">
-            <label for="grad-sem">Expected graduation semester</label>
-            <select id="grad-sem"><option value="">Select...</option><option value="Spring">Spring</option><option value="Summer">Summer</option><option value="Fall">Fall</option></select>
-          </div>
-          <div class="field">
-            <label for="grad-year">Expected graduation year</label>
-            <select id="grad-year"><option value="">Select...</option></select>
-          </div>
-        </div>
-        <div class="msg error" id="err-timeline"></div>
-        <div class="msg warn" id="warn-timeline"></div>
-      </div>
+  <!-- STEP 1 -->
+  <div class="step" id="step1">
+    <div class="step-header">
+      <div class="step-badge" id="badge1"><span>1</span></div>
+      <h2>Your Program Timeline</h2>
     </div>
-
-    <!-- STEP 2 -->
-    <div class="step" id="step2">
-      <div class="step-header">
-        <div class="step-badge" id="badge2"><span>2</span></div>
-        <h2>Your Funded Semesters</h2>
-      </div>
-      <p class="step-desc">Check every Fall or Spring semester where you have received or expect to receive Cohen funding. If you have a self-pay semester, a leave of absence, or a gap in funding, leave that semester unchecked. Summers do not appear because they do not count toward service time.</p>
-      <div class="step-content">
-        <div id="checklist-area">
-          <div class="placeholder-box">Complete Step 1 to see your semesters.</div>
+    <p class="step-desc">Select the semester you began your graduate nursing program and the semester you expect to graduate.</p>
+    <div class="step-content">
+      <div class="fields">
+        <div class="field">
+          <label for="start-sem">Start semester</label>
+          <select id="start-sem"><option value="">Select...</option><option value="Spring">Spring</option><option value="Summer">Summer</option><option value="Fall">Fall</option></select>
         </div>
-        <div class="msg info" id="info-funded"></div>
-      </div>
-    </div>
-
-    <!-- STEP 3 -->
-    <div class="step" id="step3">
-      <div class="step-header">
-        <div class="step-badge" id="badge3"><span>3</span></div>
-        <h2>Your Service Plan</h2>
-      </div>
-      <p class="step-desc">Choose whether you plan to serve full-time or part-time, and enter the month and year you expect to begin your post-graduation service role. Service must start within 6 months of graduation.</p>
-      <div class="step-content">
-        <label style="font-size:13px; font-weight:700; color:var(--navy); margin-bottom: 10px; display:block;">Service type</label>
-        <div class="radio-cards" id="radio-group">
-          <label class="radio-card" id="card-ft">
-            <input type="radio" name="svc" value="ft">
-            <span>
-              <span class="radio-card-title">Full-time</span>
-              <span class="radio-card-def">35 or more hours per week, or a contract for 12 or more academic credit hours per semester in didactic instruction.</span>
-            </span>
-          </label>
-          <label class="radio-card" id="card-pt">
-            <input type="radio" name="svc" value="pt">
-            <span>
-              <span class="radio-card-title">Part-time</span>
-              <span class="radio-card-def">20 to 34 hours per week, or fewer than 12 credit hours. Minimum of 3 academic credits or 120 clinical hours per semester.</span>
-            </span>
-          </label>
+        <div class="field">
+          <label for="start-year">Start year</label>
+          <select id="start-year"><option value="">Select...</option></select>
         </div>
-        <div class="fields">
-          <div class="field">
-            <label for="svc-month">Expected service start month</label>
-            <select id="svc-month">
-              <option value="">Select...</option>
-              <option value="1">January</option><option value="2">February</option>
-              <option value="3">March</option><option value="4">April</option>
-              <option value="5">May</option><option value="6">June</option>
-              <option value="7">July</option><option value="8">August</option>
-              <option value="9">September</option><option value="10">October</option>
-              <option value="11">November</option><option value="12">December</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="svc-year">Expected service start year</label>
-            <select id="svc-year"><option value="">Select...</option></select>
-          </div>
+        <div class="field">
+          <label for="grad-sem">Expected graduation semester</label>
+          <select id="grad-sem"><option value="">Select...</option><option value="Spring">Spring</option><option value="Summer">Summer</option><option value="Fall">Fall</option></select>
         </div>
-        <div class="msg error" id="err-service"></div>
-        <div class="msg warn" id="warn-service"></div>
-
-        <div class="reset-row" style="margin-top: 18px;">
-          <button type="button" class="btn btn-outline" id="reset-btn">Reset all fields</button>
+        <div class="field">
+          <label for="grad-year">Expected graduation year</label>
+          <select id="grad-year"><option value="">Select...</option></select>
         </div>
       </div>
+      <div class="msg error" id="err-timeline"></div>
+      <div class="msg warn" id="warn-timeline"></div>
     </div>
+  </div>
 
-    <hr class="section-divider">
+  <!-- STEP 2 -->
+  <div class="step" id="step2">
+    <div class="step-header">
+      <div class="step-badge" id="badge2"><span>2</span></div>
+      <h2>Your Funded Semesters</h2>
+    </div>
+    <p class="step-desc">Check every Fall or Spring semester where you have received or expect to receive Cohen funding. If you have a self-pay semester, a leave of absence, or a gap in funding, leave that semester unchecked. Summers do not appear because they do not count toward service time.</p>
+    <div class="step-content">
+      <div id="checklist-area">
+        <div class="placeholder-box">Complete Step 1 to see your semesters.</div>
+      </div>
+      <div class="msg info" id="info-funded"></div>
+    </div>
+  </div>
 
-    <!-- RESULTS -->
-    <div class="results-wrap" id="results-wrap">
-      <div class="results">
-        <div class="results-top">
-          <h2>Your Estimated Service Obligation</h2>
-          <div class="results-actions">
-            <button type="button" class="btn btn-ghost" id="print-btn">Print / Save PDF</button>
-          </div>
+  <!-- STEP 3 -->
+  <div class="step" id="step3">
+    <div class="step-header">
+      <div class="step-badge" id="badge3"><span>3</span></div>
+      <h2>Your Service Plan</h2>
+    </div>
+    <p class="step-desc">Choose whether you plan to serve full-time or part-time, and enter the month and year you expect to begin your post-graduation service role. Service must start within 6 months of graduation.</p>
+    <div class="step-content">
+      <label style="font-size:13px; font-weight:700; color:var(--navy); margin-bottom:10px; display:block;">Service type</label>
+      <div class="radio-cards" id="radio-group">
+        <label class="radio-card" id="card-ft">
+          <input type="radio" name="svc" value="ft">
+          <span>
+            <span class="radio-card-title">Full-time</span>
+            <span class="radio-card-def">35 or more hours per week, or a contract for 12 or more academic credit hours per semester in didactic instruction.</span>
+          </span>
+        </label>
+        <label class="radio-card" id="card-pt">
+          <input type="radio" name="svc" value="pt">
+          <span>
+            <span class="radio-card-title">Part-time</span>
+            <span class="radio-card-def">20 to 34 hours per week, or fewer than 12 credit hours. Minimum of 3 academic credits or 120 clinical hours per semester.</span>
+          </span>
+        </label>
+      </div>
+      <div class="fields">
+        <div class="field">
+          <label for="svc-month">Expected service start month</label>
+          <select id="svc-month">
+            <option value="">Select...</option>
+            <option value="1">January</option><option value="2">February</option>
+            <option value="3">March</option><option value="4">April</option>
+            <option value="5">May</option><option value="6">June</option>
+            <option value="7">July</option><option value="8">August</option>
+            <option value="9">September</option><option value="10">October</option>
+            <option value="11">November</option><option value="12">December</option>
+          </select>
         </div>
-        <div class="results-summary" id="r-summary"></div>
-        <div class="results-grid">
-          <div class="r-card">
-            <div class="r-label">Funded Fall/Spring Semesters</div>
-            <div class="r-value" id="r-funded">0</div>
-            <div class="r-sub">Finalized by MHEC after graduation</div>
-          </div>
-          <div class="r-card">
-            <div class="r-label">Service Owed</div>
-            <div class="r-value" id="r-owed">0</div>
-            <div class="r-sub" id="r-owed-sub"></div>
-          </div>
-          <div class="r-card">
-            <div class="r-label">Must Begin By</div>
-            <div class="r-value" id="r-deadline">-</div>
-            <div class="r-sub">Within 6 months of graduation</div>
-          </div>
-          <div class="r-card">
-            <div class="r-label">Projected Completion</div>
-            <div class="r-value" id="r-complete">-</div>
-            <div class="r-sub" id="r-complete-sub">Assumes continuous Fall/Spring service</div>
-          </div>
+        <div class="field">
+          <label for="svc-year">Expected service start year</label>
+          <select id="svc-year"><option value="">Select...</option></select>
         </div>
-        <div class="results-notices" id="r-notices"></div>
+      </div>
+      <div class="msg error" id="err-service"></div>
+      <div class="msg warn" id="warn-service"></div>
+
+      <div class="reset-row" style="margin-top: 20px;">
+        <button type="button" class="btn btn-outline" id="reset-btn">Reset all fields</button>
       </div>
     </div>
+  </div>
 
-    <!-- INCOMPLETE MESSAGE -->
-    <div class="msg info" id="msg-incomplete" style="margin-top: 24px;"></div>
+  <hr class="section-divider">
 
-    <!-- LEARN MORE -->
-    <details class="learn-more">
-      <summary>Understanding the service obligation rules</summary>
-      <div class="learn-body">
-        <h4>Why are summers excluded?</h4>
-        <p>Per clarification from the Maryland Higher Education Commission and the Nurse Support Program II, only Fall and Spring semesters count toward incurring or fulfilling service time. Summer Cohen funding does not add service time and cannot be used to fulfill it. Summer funding may, however, factor into the dollar amount subject to repayment if service requirements are not met. That is a separate calculation handled by the program office.</p>
-
-        <h4>How service time is calculated</h4>
-        <p>Each funded Fall or Spring semester equals 0.5 year of service obligation:</p>
-        <ul>
-          <li>One semester of full-time service, <strong>or</strong></li>
-          <li>Two semesters of part-time service.</li>
-        </ul>
-        <p>For example, four funded Fall/Spring semesters would equal 2 years of full-time service or 4 years of part-time service.</p>
-
-        <h4>Where can service be completed?</h4>
-        <p>At an approved Maryland institution granting nursing degrees, or an approved Maryland hospital educator or professional development role. Only Maryland sites qualify. Out-of-state institutions do not count.</p>
-
-        <h4>When must service begin?</h4>
-        <p>Within 6 months after completion of your degree or certificate program. Service cannot be fulfilled before program completion. Post-graduation service must be continuous across Fall and Spring at a single site.</p>
-
-        <h4>What about leaves of absence or self-pay semesters?</h4>
-        <p>A semester without Cohen funding does not create service obligation. If you have a self-pay semester, a leave of absence, or a gap in funding, leave that semester unchecked in Step 2. Only semesters with confirmed Cohen funding count.</p>
-
-        <h4>What if my situation is unusual?</h4>
-        <p>This calculator works best for scholars with straightforward funding records and service plans. If your situation includes mid-program gaps, overlapping grants, or anything that does not fit the usual pattern, please contact the program office for an individualized review.</p>
-
-        <h4>What is the official source of truth?</h4>
-        <p>Your signed Service Obligation Agreement, Promissory Note, and the Institutional Student Funding Record (ISFR) prepared after graduation are the authoritative documents. This calculator is a planning aid and is not a replacement for those records.</p>
+  <!-- RESULTS -->
+  <div class="results-wrap" id="results-wrap">
+    <div class="results">
+      <div class="results-top">
+        <h2>Your Estimated Service Obligation</h2>
+        <div class="results-actions">
+          <button type="button" class="btn btn-ghost" id="print-btn">Print / Save PDF</button>
+        </div>
       </div>
-    </details>
-
-    <!-- CONTACT -->
-    <div class="contact-block">
-      <strong>Questions about your service obligation?</strong><br>
-      If your results look off, your situation is complex, or you just want confirmation, please reach out. We are happy to help.<br>
-      <strong>Email:</strong> <a href="mailto:cohenscholars@jhu.edu">cohenscholars@jhu.edu</a>
+      <div class="results-summary" id="r-summary"></div>
+      <div class="results-grid">
+        <div class="r-card">
+          <div class="r-label">Funded Fall/Spring Semesters</div>
+          <div class="r-value" id="r-funded">0</div>
+          <div class="r-sub">Finalized by MHEC after graduation</div>
+        </div>
+        <div class="r-card">
+          <div class="r-label">Service Owed</div>
+          <div class="r-value" id="r-owed">0</div>
+          <div class="r-sub" id="r-owed-sub"></div>
+        </div>
+        <div class="r-card">
+          <div class="r-label">Must Begin By</div>
+          <div class="r-value" id="r-deadline">-</div>
+          <div class="r-sub">Within 6 months of graduation</div>
+        </div>
+        <div class="r-card">
+          <div class="r-label">Projected Completion</div>
+          <div class="r-value" id="r-complete">-</div>
+          <div class="r-sub" id="r-complete-sub">Assumes continuous Fall/Spring service</div>
+        </div>
+      </div>
+      <div class="results-notices" id="r-notices"></div>
     </div>
+  </div>
 
-    <!-- DISCLAIMER -->
-    <div class="disclaimer-block">
-      <strong>Disclaimer.</strong> This calculator provides a planning estimate only. Your official service obligation will be determined by the Maryland Higher Education Commission based on your signed Service Obligation Agreement, Promissory Note, and your official funding record (ISFR) prepared by the School of Nursing after graduation. Only funded Fall and Spring semesters count toward service time. Summer Cohen funding does not add or fulfill service time but may factor into repayment calculations if service is not completed. The projected completion date assumes continuous service with no gaps. For questions about your individual record, please contact the program office.
+  <!-- INCOMPLETE MESSAGE -->
+  <div class="msg info" id="msg-incomplete" style="margin-top: 24px;"></div>
+
+  <!-- LEARN MORE -->
+  <details class="learn-more">
+    <summary>Understanding the service obligation rules</summary>
+    <div class="learn-body">
+      <h4>Why are summers excluded?</h4>
+      <p>Per clarification from the Maryland Higher Education Commission and the Nurse Support Program II, only Fall and Spring semesters count toward incurring or fulfilling service time. Summer Cohen funding does not add service time and cannot be used to fulfill it. Summer funding may, however, factor into the dollar amount subject to repayment if service requirements are not met. That is a separate calculation handled by the program office.</p>
+
+      <h4>How service time is calculated</h4>
+      <p>Each funded Fall or Spring semester equals 0.5 year of service obligation:</p>
+      <ul>
+        <li>One semester of full-time service, <strong>or</strong></li>
+        <li>Two semesters of part-time service.</li>
+      </ul>
+      <p>For example, four funded Fall/Spring semesters would equal 2 years of full-time service or 4 years of part-time service.</p>
+
+      <h4>Where can service be completed?</h4>
+      <p>At an approved Maryland institution granting nursing degrees, or an approved Maryland hospital educator or professional development role. Only Maryland sites qualify. Out-of-state institutions do not count.</p>
+
+      <h4>When must service begin?</h4>
+      <p>Within 6 months after completion of your degree or certificate program. Service cannot be fulfilled before program completion. Post-graduation service must be continuous across Fall and Spring at a single site.</p>
+
+      <h4>What about leaves of absence or self-pay semesters?</h4>
+      <p>A semester without Cohen funding does not create service obligation. If you have a self-pay semester, a leave of absence, or a gap in funding, leave that semester unchecked in Step 2. Only semesters with confirmed Cohen funding count.</p>
+
+      <h4>What if my situation is unusual?</h4>
+      <p>This calculator works best for scholars with straightforward funding records and service plans. If your situation includes mid-program gaps, overlapping grants, or anything that does not fit the usual pattern, please contact the program office for an individualized review.</p>
+
+      <h4>What is the official source of truth?</h4>
+      <p>Your signed Service Obligation Agreement, Promissory Note, and the Institutional Student Funding Record (ISFR) prepared after graduation are the authoritative documents. This calculator is a planning aid and is not a replacement for those records.</p>
     </div>
+  </details>
 
-    <div class="page-footer">
-      Cohen Scholars Program &middot; Johns Hopkins School of Nursing<br>
-      Funded by the Maryland Nurse Support Program II
-    </div>
+  <!-- CONTACT -->
+  <div class="contact-block">
+    <strong>Questions about your service obligation?</strong><br>
+    If your results look off, your situation is complex, or you just want confirmation, please reach out. We are happy to help.<br>
+    <strong>Email:</strong> <a href="mailto:cohenscholars@jhu.edu">cohenscholars@jhu.edu</a>
+  </div>
 
-  </div><!-- /body-area -->
-</div><!-- /page -->
+  <!-- DISCLAIMER -->
+  <div class="disclaimer-block">
+    <strong>Disclaimer.</strong> This calculator provides a planning estimate only. Your official service obligation will be determined by the Maryland Higher Education Commission based on your signed Service Obligation Agreement, Promissory Note, and your official funding record (ISFR) prepared by the School of Nursing after graduation. Only funded Fall and Spring semesters count toward service time. Summer Cohen funding does not add or fulfill service time but may factor into repayment calculations if service is not completed. The projected completion date assumes continuous service with no gaps. For questions about your individual record, please contact the program office.
+  </div>
+
+  <div class="page-footer">
+    Cohen Scholars Program &middot; Johns Hopkins School of Nursing<br>
+    Funded by the Maryland Nurse Support Program II
+  </div>
+
+</div>
 
 <script>
 (function() {
@@ -928,7 +893,6 @@
 
     const sv = ss.value, syv = +sy.value, gv = gs.value, gyv = +gy.value;
 
-    // Error: grad before start
     if (cmpSem(sv, syv, gv, gyv) > 0) {
       showMsg(errT, 'Your graduation date is earlier than your program start. Please check your selections.');
       checkArea.innerHTML = '<div class="placeholder-box">Fix the timeline error above to continue.</div>';
@@ -937,12 +901,10 @@
       return;
     }
 
-    // Error: same semester
     if (cmpSem(sv, syv, gv, gyv) === 0) {
       showMsg(errT, 'Your start and graduation are in the same semester. If that is correct, your program was a single semester. If not, please adjust your dates.');
     }
 
-    // Warning: span > 7 years
     if (gyv - syv > 7) {
       showMsg(warnT, 'Your timeline spans more than 7 years. Double-check your start and graduation dates to make sure they are correct.');
     }
@@ -955,14 +917,11 @@
       return;
     }
 
-    // Prune stale keys
     const valid = new Set(terms.map(t => t.sem + '-' + t.yr));
     Object.keys(funded).forEach(k => { if (!valid.has(k)) delete funded[k]; });
 
-    // Build UI
     const wrap = document.createElement('div');
 
-    // Controls row
     const ctrl = document.createElement('div');
     ctrl.className = 'checklist-controls';
     const selAll = document.createElement('button');
@@ -973,7 +932,6 @@
     ctrl.appendChild(desAll);
     wrap.appendChild(ctrl);
 
-    // List
     const ul = document.createElement('ul');
     ul.className = 'checklist';
 
@@ -1015,7 +973,6 @@
 
     wrap.appendChild(ul);
 
-    // Count
     const countDiv = document.createElement('div');
     countDiv.className = 'funded-count';
     countDiv.id = 'funded-count';
@@ -1024,7 +981,6 @@
     checkArea.innerHTML = '';
     checkArea.appendChild(wrap);
 
-    // Select/deselect all
     selAll.addEventListener('click', () => {
       ul.querySelectorAll('li').forEach(li => {
         const cb = li.querySelector('input');
@@ -1068,7 +1024,6 @@
   function updateResults() {
     hideMsg(errS); hideMsg(warnS); hideMsg(infoF); hideMsg(msgInc);
 
-    // Radio card highlighting
     $('card-ft').classList.toggle('selected', svcType() === 'ft');
     $('card-pt').classList.toggle('selected', svcType() === 'pt');
 
@@ -1076,26 +1031,19 @@
     const st = svcType(), smv = +sm.value, syrv = +syr.value;
     const f = countFunded();
 
-    // Check completeness
     const has1 = sv && syv && gv && gyv && !errT.classList.contains('visible');
     const has2 = has1 && terms.length > 0;
     const has3 = st && smv && syrv;
 
     if (!has1 || !has2 || !has3) {
       resWrap.classList.remove('visible');
-      // Show a helpful incomplete message
       if (has1 && has2 && !has3) {
         showMsg(msgInc, 'Complete Step 3 (service type and start date) to see your results.');
-      } else if (has1 && !has2) {
-        // Checklist is there but nothing checked
-      } else if (!has1) {
-        // Step 1 incomplete, no message needed
       }
       updateBadges();
       return;
     }
 
-    // Validate service dates
     const ga = gradAnchorDate(gv, gyv);
     const sa = new Date(syrv, smv - 1, 15);
     const sixMo = new Date(ga); sixMo.setMonth(sixMo.getMonth() + 6);
@@ -1115,12 +1063,10 @@
       showMsg(infoF, 'You have not checked any funded semesters. If you have received or expect to receive Cohen funding, go back to Step 2 and check the appropriate semesters.');
     }
 
-    // Show results
     resWrap.classList.add('visible');
 
     $('r-funded').textContent = f;
 
-    // Owed
     const yrsOwed = f * 0.5;
     if (st === 'ft') {
       $('r-owed').textContent = fmtYears(yrsOwed);
@@ -1130,10 +1076,8 @@
       $('r-owed-sub').textContent = (f * 2) + ' part-time semester' + (f * 2 === 1 ? '' : 's');
     }
 
-    // Deadline
     $('r-deadline').textContent = gradDeadline(gv, gyv);
 
-    // Completion
     if (f === 0) {
       $('r-complete').textContent = 'None owed';
       $('r-complete-sub').textContent = 'No funded semesters on record';
@@ -1144,11 +1088,9 @@
       $('r-complete-sub').textContent = 'Assumes continuous Fall/Spring service';
     }
 
-    // Summary sentence
     const summary = buildSummary(f, st, smv, syrv, gv, gyv);
     $('r-summary').textContent = summary;
 
-    // Result-level notices
     const nb = $('r-notices');
     nb.innerHTML = '';
 
