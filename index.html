@@ -50,72 +50,25 @@
 
   /* ===================== HEADER ===================== */
   .header {
-    background: var(--navy);
-    color: var(--white);
-    padding: 36px 40px;
-    border-radius: var(--radius);
+    padding: 8px 0 20px;
     margin-bottom: 32px;
+    border-bottom: 2px solid var(--navy);
   }
   .header-label {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 400;
     letter-spacing: 0.5px;
-    opacity: 0.75;
-    margin-bottom: 8px;
+    color: var(--text-light);
+    margin-bottom: 4px;
   }
   .header h1 {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 300;
-    letter-spacing: -0.3px;
-    margin-bottom: 10px;
-    line-height: 1.2;
-  }
-  .header-sub {
-    font-size: 15px;
-    font-weight: 300;
-    opacity: 0.88;
-    max-width: 600px;
-    line-height: 1.55;
-  }
-
-  /* ===================== INTRO ===================== */
-  .intro {
-    margin-bottom: 36px;
-    max-width: 720px;
-  }
-  .intro p {
-    font-size: 15px;
-    color: var(--text);
-    margin-bottom: 14px;
-    line-height: 1.7;
-  }
-  .intro p:last-child { margin-bottom: 0; }
-
-  .how-box {
-    background: var(--lavender);
-    border-left: 4px solid var(--navy);
-    border-radius: var(--radius-xs);
-    padding: 22px 26px;
-    margin-top: 20px;
-  }
-  .how-box h3 {
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
     color: var(--navy);
-    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+    margin: 0;
+    line-height: 1.25;
   }
-  .how-box ol {
-    padding-left: 18px;
-    font-size: 14.5px;
-    color: var(--text);
-  }
-  .how-box li {
-    margin-bottom: 7px;
-    line-height: 1.55;
-  }
-  .how-box li:last-child { margin-bottom: 0; }
 
   /* ===================== SECTION DIVIDER ===================== */
   .section-divider {
@@ -145,6 +98,7 @@
     font-size: 15px;
     font-weight: 700;
     flex-shrink: 0;
+    transition: background 0.25s ease;
   }
   .step-badge.complete { background: var(--success); }
   .step-badge.complete::after { content: "✓"; font-size: 16px; }
@@ -217,7 +171,7 @@
     border-radius: var(--radius);
     padding: 16px 18px;
     cursor: pointer;
-    transition: all 0.12s;
+    transition: background 0.15s ease, box-shadow 0.15s ease;
     background: var(--white);
     display: flex;
     gap: 12px;
@@ -279,7 +233,7 @@
     gap: 10px;
     font-size: 15px;
     cursor: pointer;
-    transition: all 0.1s;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
     user-select: none;
     background: var(--white);
   }
@@ -343,7 +297,21 @@
 
   /* ===================== RESULTS ===================== */
   .results-wrap { display: none; }
-  .results-wrap.visible { display: block; }
+  .results-wrap.visible {
+    display: block;
+    animation: fadeSlideIn 0.45s ease-out;
+  }
+
+  @keyframes fadeSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
   .results {
     background: var(--navy);
@@ -402,7 +370,7 @@
 
   .results-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 14px;
   }
   .r-card {
@@ -523,11 +491,16 @@
     opacity: 0.6;
   }
 
+  /* ===================== REDUCED MOTION ===================== */
+  @media (prefers-reduced-motion: reduce) {
+    .results-wrap.visible { animation: none; }
+    .checklist li, .radio-card, .step-badge { transition: none; }
+  }
+
   /* ===================== RESPONSIVE ===================== */
   @media (max-width: 600px) {
     body { padding: 12px 8px 36px; }
-    .header { padding: 28px 22px; border-radius: var(--radius-sm); }
-    .header h1 { font-size: 26px; }
+    .header h1 { font-size: 24px; }
     .step-content, .step-desc { padding-left: 0; }
     .results { padding: 22px 18px; border-radius: var(--radius-sm); }
     .results-grid { grid-template-columns: 1fr; }
@@ -538,16 +511,10 @@
   @media print {
     body { background: var(--white); padding: 0; }
     .header {
-      background: var(--white) !important;
-      color: var(--navy) !important;
-      padding: 0 0 16px;
-      border: none;
+      padding: 0 0 12px;
       border-bottom: 2px solid var(--navy);
-      border-radius: 0;
     }
-    .header-label, .header-sub { color: var(--navy) !important; opacity: 1; }
-    .header h1 { color: var(--navy) !important; }
-    .how-box, .contact-block { display: none; }
+    .contact-block { display: none; }
     .results {
       background: var(--white) !important;
       color: var(--navy) !important;
@@ -571,26 +538,7 @@
   <div class="header">
     <div class="header-label">Cohen Scholars Program</div>
     <h1>Service Obligation Calculator</h1>
-    <div class="header-sub">Plan ahead by estimating how much service you will owe, when it must begin, and when you could finish, based on your funded semesters and expected service plan.</div>
   </div>
-
-  <!-- INTRO -->
-  <div class="intro">
-    <p>As a Cohen Scholar, you commit to a post-graduation service obligation in exchange for tuition support. The amount of service you will owe depends on how many Fall and Spring semesters receive Cohen funding. This calculator helps you plan ahead by estimating your obligation based on your expected timeline and funding.</p>
-    <p>Nothing you enter here is saved, stored, or sent anywhere. Everything stays in your browser window.</p>
-
-    <div class="how-box">
-      <h3>How to Use This Calculator</h3>
-      <ol>
-        <li><strong>Enter your program timeline</strong> so the calculator knows which semesters fall within your program.</li>
-        <li><strong>Check your funded semesters.</strong> Only Fall and Spring semesters appear. Summers are excluded because they do not count toward service obligation. Check the semesters you have received or expect to receive Cohen funding.</li>
-        <li><strong>Enter your service plan,</strong> including whether you will serve full-time or part-time and when you expect to start.</li>
-        <li><strong>Review your results</strong> below. You can print or save as a PDF to bring to a mentoring meeting.</li>
-      </ol>
-    </div>
-  </div>
-
-  <hr class="section-divider">
 
   <!-- STEP 1 -->
   <div class="step" id="step1">
@@ -712,11 +660,6 @@
           <div class="r-label">Service Owed</div>
           <div class="r-value" id="r-owed">0</div>
           <div class="r-sub" id="r-owed-sub"></div>
-        </div>
-        <div class="r-card">
-          <div class="r-label">Must Begin By</div>
-          <div class="r-value" id="r-deadline">-</div>
-          <div class="r-sub">Within 6 months of graduation</div>
         </div>
         <div class="r-card">
           <div class="r-label">Projected Completion</div>
@@ -1063,7 +1006,14 @@
       showMsg(infoF, 'You have not checked any funded semesters. If you have received or expect to receive Cohen funding, go back to Step 2 and check the appropriate semesters.');
     }
 
+    const wasHidden = !resWrap.classList.contains('visible');
     resWrap.classList.add('visible');
+
+    if (wasHidden) {
+      setTimeout(() => {
+        resWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 80);
+    }
 
     $('r-funded').textContent = f;
 
@@ -1075,8 +1025,6 @@
       $('r-owed').textContent = fmtYears(f);
       $('r-owed-sub').textContent = (f * 2) + ' part-time semester' + (f * 2 === 1 ? '' : 's');
     }
-
-    $('r-deadline').textContent = gradDeadline(gv, gyv);
 
     if (f === 0) {
       $('r-complete').textContent = 'None owed';
@@ -1111,8 +1059,7 @@
     const semsNeeded = st === 'ft' ? f : f * 2;
     const startObj = svcStartSem(smv, syrv);
     const endStr = projectEnd(startObj, semsNeeded);
-    const dl = gradDeadline(gv, gyv);
-    return 'Based on ' + f + ' funded semester' + (f === 1 ? '' : 's') + ', you would owe approximately ' + fmtYears(yrs) + ' of ' + label + ' service. Service would need to begin by ' + dl + '. Starting in ' + MN[smv - 1] + ' ' + syrv + ' with continuous ' + label + ' service, your obligation would be complete around ' + endStr + '.';
+    return 'Based on ' + f + ' funded semester' + (f === 1 ? '' : 's') + ', you would owe approximately ' + fmtYears(yrs) + ' of ' + label + ' service. Starting in ' + MN[smv - 1] + ' ' + syrv + ' with continuous ' + label + ' service, your obligation would be complete around ' + endStr + '.';
   }
 
   function addNotice(container, txt) {
