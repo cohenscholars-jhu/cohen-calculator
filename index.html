@@ -491,9 +491,313 @@
     opacity: 0.6;
   }
 
+  /* ===================== SCENARIO GROUPS (WHAT-IF SUB-SECTIONS) ===================== */
+  .scenario-group {
+    padding-top: 22px;
+    padding-bottom: 22px;
+    border-top: 1px solid var(--border-light);
+  }
+  .scenario-group:first-of-type { border-top: none; padding-top: 6px; }
+  .scenario-group:last-of-type { padding-bottom: 6px; }
+
+  .scenario-header h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+
+  .scenario-hint {
+    font-size: 13.5px;
+    color: var(--text-light);
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+
+  .switch-controls {
+    background: var(--blue-wash);
+    border-radius: var(--radius-sm);
+    padding: 16px 18px;
+  }
+
+  .switch-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+
+  .switch-hint {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.5;
+    flex: 1 1 280px;
+  }
+
+  .switch-controls .field label {
+    font-size: 12px;
+  }
+
+  /* ===================== PER-TERM LIST ===================== */
+  .term-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .term-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-xs);
+    gap: 10px;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .term-row.modified {
+    border-color: var(--navy);
+    background: var(--lavender);
+  }
+
+  .term-row-name {
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .term-row-segment {
+    display: inline-flex;
+    background: var(--border-light);
+    border-radius: 6px;
+    padding: 2px;
+    flex-shrink: 0;
+  }
+  .term-row-segment button {
+    background: none;
+    border: none;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-light);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    font-family: inherit;
+    letter-spacing: 0.5px;
+  }
+  .term-row-segment button:hover:not(.active) {
+    color: var(--navy);
+  }
+  .term-row-segment button.active {
+    background: var(--navy);
+    color: var(--white);
+  }
+
+  /* ===================== TOP AUTHORITY NOTICE ===================== */
+  .top-notice {
+    display: block;
+    background: #fef9e7;
+    border-left: 4px solid #d4a829;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin-bottom: 28px;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: #333;
+  }
+  .top-notice-icon {
+    display: inline-block;
+    vertical-align: middle;
+    flex-shrink: 0;
+    position: relative;
+    top: -1px;
+  }
+  .top-notice strong { color: #333; font-weight: 700; }
+
+  /* ===================== WHAT-IF PANEL ===================== */
+  .whatif-wrap { display: none; margin-top: 24px; }
+  .whatif-wrap.visible {
+    display: block;
+    animation: fadeSlideIn 0.45s ease-out;
+  }
+
+  .whatif {
+    border: 2px solid var(--navy);
+    border-radius: var(--radius);
+    padding: 28px 30px;
+    background: var(--white);
+  }
+
+  .whatif-top {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+
+  .whatif-top h2 {
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--navy);
+  }
+
+  .whatif-tag {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--blue);
+    background: var(--blue-pale);
+    padding: 3px 9px;
+    border-radius: 20px;
+  }
+
+  .whatif-desc {
+    font-size: 14.5px;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 22px;
+  }
+
+  .breaks-list { margin-bottom: 14px; }
+
+  .break-row {
+    background: var(--blue-wash);
+    border-radius: var(--radius-sm);
+    padding: 16px 18px;
+    margin-bottom: 12px;
+  }
+
+  .break-row-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .break-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .break-remove {
+    background: none;
+    border: none;
+    color: var(--err-red);
+    font-size: 13px;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 4px 10px;
+    border-radius: var(--radius-xs);
+    font-weight: 700;
+    transition: background 0.15s;
+  }
+  .break-remove:hover { background: var(--err-bg); }
+
+  .break-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 14px;
+  }
+
+  .break-fields .field label {
+    font-size: 12px;
+  }
+
+  .whatif-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+  }
+
+  .btn-add-break {
+    background: var(--white);
+    border: 2px dashed var(--navy);
+    color: var(--navy);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px 18px;
+    border-radius: var(--radius-xs);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-add-break:hover { background: var(--lavender); }
+
+  .whatif-err {
+    background: var(--err-bg);
+    border-left: 4px solid var(--err-red);
+    color: var(--err-red);
+    padding: 12px 16px;
+    border-radius: var(--radius-xs);
+    font-size: 14px;
+    margin-top: 14px;
+    display: none;
+    line-height: 1.55;
+  }
+  .whatif-err.visible { display: block; }
+
+  .whatif-result {
+    display: none;
+    background: var(--lavender);
+    border-left: 4px solid var(--navy);
+    border-radius: var(--radius-sm);
+    padding: 18px 22px;
+    margin-top: 18px;
+  }
+  .whatif-result.visible { display: block; }
+
+  .whatif-result-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-weight: 700;
+    color: var(--navy);
+    opacity: 0.85;
+  }
+
+  .whatif-result-value {
+    font-size: 26px;
+    font-weight: 300;
+    color: var(--navy);
+    line-height: 1.15;
+    margin-top: 6px;
+  }
+
+  .whatif-result-sub {
+    font-size: 13.5px;
+    color: var(--text-light);
+    margin-top: 8px;
+    line-height: 1.55;
+  }
+
+  .whatif-result-sub strong { color: var(--navy); }
+
+  .whatif-empty {
+    font-size: 14px;
+    color: var(--text-light);
+    padding: 18px 20px;
+    background: var(--blue-wash);
+    border-radius: var(--radius-sm);
+    margin-bottom: 14px;
+    line-height: 1.55;
+  }
+
   /* ===================== REDUCED MOTION ===================== */
   @media (prefers-reduced-motion: reduce) {
-    .results-wrap.visible { animation: none; }
+    .results-wrap.visible, .whatif-wrap.visible { animation: none; }
     .checklist li, .radio-card, .step-badge { transition: none; }
   }
 
@@ -505,6 +809,10 @@
     .results { padding: 22px 18px; border-radius: var(--radius-sm); }
     .results-grid { grid-template-columns: 1fr; }
     .r-value { font-size: 20px; }
+    .whatif { padding: 22px 18px; }
+    .break-fields { grid-template-columns: 1fr; }
+    .whatif-result-value { font-size: 22px; }
+    .top-notice { padding: 14px 16px; font-size: 13.5px; }
   }
 
   /* ===================== PRINT ===================== */
@@ -527,6 +835,14 @@
     .btn, .results-actions, .learn-more, .checklist-controls { display: none !important; }
     .checklist li.checked { background: var(--navy) !important; color: var(--white) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .reset-row { display: none; }
+    .whatif { border: 2px solid var(--navy); page-break-inside: avoid; margin-top: 16px; }
+    .break-remove, .btn-add-break { display: none !important; }
+    .break-row { background: var(--blue-pale) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .whatif-result { background: var(--blue-pale) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .top-notice { background: #fef9e7 !important; border-left: 4px solid #d4a829 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; page-break-inside: avoid; }
+    .switch-controls { background: var(--blue-pale) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; page-break-inside: avoid; }
+    .term-list { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important; }
+    .term-row-segment button.active { background: var(--navy) !important; color: var(--white) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
 </style>
 </head>
@@ -538,6 +854,11 @@
   <div class="header">
     <div class="header-label">Cohen Scholars Program</div>
     <h1>Service Obligation Calculator</h1>
+  </div>
+
+  <!-- TOP AUTHORITY NOTICE -->
+  <div class="top-notice" role="note">
+    <svg class="top-notice-icon" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10.5" fill="none" stroke="#b8941e" stroke-width="2"/><text x="12" y="17.5" text-anchor="middle" fill="#b8941e" font-size="16" font-weight="700" font-family="Georgia,'Times New Roman',serif" font-style="italic">i</text></svg> <strong>This is a planning tool only. MHEC is the final authority on your service obligation.</strong> Your official obligation will be determined by the Maryland Higher Education Commission after graduation, based on your signed Service Obligation Agreement, Promissory Note, and the Institutional Student Funding Record (ISFR) prepared by the School of Nursing.
   </div>
 
   <!-- STEP 1 -->
@@ -671,6 +992,63 @@
     </div>
   </div>
 
+  <!-- WHAT-IF PANEL -->
+  <div class="whatif-wrap" id="whatif-wrap">
+    <div class="whatif">
+      <div class="whatif-top">
+        <h2>Explore What-If Scenarios</h2>
+        <span class="whatif-tag">Planning tool</span>
+      </div>
+      <p class="whatif-desc">
+        Use these to see how different planning choices or unexpected circumstances would affect your completion date. This is a planning tool only. Program rules require continuous Fall/Spring service at a single Maryland site at one service type. If something unexpected comes up during service, please reach out to the program office so we can help you think through your options.
+      </p>
+
+      <!-- SCENARIO: BREAK -->
+      <div class="scenario-group">
+        <div class="scenario-header">
+          <h3>What if I take a break?</h3>
+        </div>
+
+        <div class="breaks-list" id="breaks-list">
+          <div class="whatif-empty" id="whatif-empty">
+            No breaks added yet. Click the button below to model a hypothetical pause in your service.
+          </div>
+        </div>
+
+        <div class="whatif-actions">
+          <button type="button" class="btn-add-break" id="add-break-btn">+ Add a break</button>
+          <button type="button" class="text-btn" id="clear-breaks-btn" style="display:none;">Clear all breaks</button>
+        </div>
+      </div>
+
+      <!-- SCENARIO: SERVICE TYPE SWITCH -->
+      <div class="scenario-group">
+        <div class="scenario-header">
+          <h3>What if I did a mix of service types?</h3>
+        </div>
+        <p class="scenario-hint">For example, start with two years of full-time and finish part-time. Or start part-time and switch to full-time later.</p>
+
+        <div class="switch-controls">
+          <div class="term-list" id="term-list">
+            <div class="whatif-empty">Complete your service plan above to see your projected semesters here.</div>
+          </div>
+          <div class="switch-footer">
+            <p class="switch-hint">Click <strong>FT</strong> or <strong>PT</strong> on any semester to change its service type. The list will grow or shrink to cover your obligation based on your picks.</p>
+            <button type="button" class="text-btn" id="clear-switch-btn" style="display:none;">Reset to primary plan</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="whatif-err" id="whatif-err"></div>
+
+      <div class="whatif-result" id="whatif-result" aria-live="polite">
+        <div class="whatif-result-label">Adjusted Projected Completion</div>
+        <div class="whatif-result-value" id="r-adjusted">-</div>
+        <div class="whatif-result-sub" id="r-adjusted-sub"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- INCOMPLETE MESSAGE -->
   <div class="msg info" id="msg-incomplete" style="margin-top: 24px;"></div>
 
@@ -715,7 +1093,7 @@
 
   <!-- DISCLAIMER -->
   <div class="disclaimer-block">
-    <strong>Disclaimer.</strong> This calculator provides a planning estimate only. Your official service obligation will be determined by the Maryland Higher Education Commission based on your signed Service Obligation Agreement, Promissory Note, and your official funding record (ISFR) prepared by the School of Nursing after graduation. Only funded Fall and Spring semesters count toward service time. Summer Cohen funding does not add or fulfill service time but may factor into repayment calculations if service is not completed. The projected completion date assumes continuous service with no gaps. For questions about your individual record, please contact the program office.
+    <strong>A few things to keep in mind.</strong> Only funded Fall and Spring semesters count toward service time. Summer Cohen funding does not add or fulfill service time but may factor into repayment calculations if service is not completed. The projected completion date assumes continuous service with no gaps. For questions about your individual record, please contact the program office.
   </div>
 
   <div class="page-footer">
@@ -786,9 +1164,55 @@
     return (sem === 'Fall' ? 'December' : 'May') + ' ' + yr;
   }
 
+  function projectEndObj(startObj, semsNeeded) {
+    let { sem, yr } = startObj;
+    for (let i = 1; i < semsNeeded; i++) {
+      if (sem === 'Spring') { sem = 'Fall'; }
+      else { sem = 'Spring'; yr++; }
+    }
+    return { sem: sem, yr: yr, dateStr: (sem === 'Fall' ? 'December' : 'May') + ' ' + yr };
+  }
+
+  function projectEndWithBreaks(startObj, semsNeeded, validBreaks) {
+    let sem = startObj.sem, yr = startObj.yr;
+    let served = 0;
+    let safety = 0;
+
+    const inBreak = (s, y) => validBreaks.some(b =>
+      cmpSem(s, y, b.startSem, +b.startYr) >= 0 &&
+      cmpSem(s, y, b.endSem, +b.endYr) < 0
+    );
+
+    while (served < semsNeeded && safety < 200) {
+      if (!inBreak(sem, yr)) {
+        served++;
+        if (served >= semsNeeded) break;
+      }
+      if (sem === 'Spring') { sem = 'Fall'; }
+      else { sem = 'Spring'; yr++; }
+      safety++;
+    }
+
+    return { sem: sem, yr: yr, dateStr: (sem === 'Fall' ? 'December' : 'May') + ' ' + yr };
+  }
+
+  function semDelta(a, b) {
+    let count = 0;
+    let sem = a.sem, yr = a.yr;
+    while (cmpSem(sem, yr, b.sem, b.yr) < 0 && count < 200) {
+      count++;
+      if (sem === 'Spring') { sem = 'Fall'; }
+      else { sem = 'Spring'; yr++; }
+    }
+    return count;
+  }
+
   /* ========== STATE ========== */
   let funded = {};
   let terms = [];
+  let breaks = [];
+  let breakId = 0;
+  let termSelections = {};  // { 'Fall-2027': 'ft' | 'pt' } - user-picked overrides of primary
 
   /* ========== DOM REFS ========== */
   const $  = id => document.getElementById(id);
@@ -800,17 +1224,160 @@
   const msgInc = $('msg-incomplete');
   const checkArea = $('checklist-area');
   const resWrap = $('results-wrap');
+  const whatifWrap = $('whatif-wrap');
+  const whatifResult = $('whatif-result');
+  const whatifErr = $('whatif-err');
+  const breaksList = $('breaks-list');
+  const whatifEmpty = $('whatif-empty');
+  const termList = $('term-list');
 
   /* ========== HELPERS ========== */
   function hideMsg(el) { el.classList.remove('visible'); el.textContent = ''; }
   function showMsg(el, txt) { el.textContent = txt; el.classList.add('visible'); }
   function svcType() { const r = document.querySelector('input[name="svc"]:checked'); return r ? r.value : null; }
 
+  function isServicePlanComplete() {
+    const st = svcType();
+    return st === 'ft' || st === 'pt';
+  }
+
+  function computeServicePlan(f) {
+    const st = svcType();
+    if (!st || f === 0) return null;
+
+    if (st === 'ft') {
+      return {
+        mode: 'ft',
+        totalSems: f,
+        calendarYears: f * 0.5,
+        summary: f + ' full-time semester' + (f === 1 ? '' : 's')
+      };
+    }
+    if (st === 'pt') {
+      const pt = f * 2;
+      return {
+        mode: 'pt',
+        totalSems: pt,
+        calendarYears: f,
+        summary: pt + ' part-time semester' + (pt === 1 ? '' : 's')
+      };
+    }
+    return null;
+  }
+
+  function buildTermList() {
+    const primary = svcType();
+    const smv = +sm.value;
+    const syrv = +syr.value;
+    const f = countFunded();
+    if (!primary || !smv || !syrv || f === 0) return [];
+
+    const totalUnitsOwed = f * 2;
+    const startObj = svcStartSem(smv, syrv);
+    let sem = startObj.sem, yr = startObj.yr;
+
+    let accumulated = 0;
+    const list = [];
+    let safety = 0;
+    while (accumulated < totalUnitsOwed && safety < 50) {
+      const key = sem + '-' + yr;
+      const type = termSelections[key] || primary;
+      const units = type === 'ft' ? 2 : 1;
+      list.push({ sem: sem, yr: yr, key: key, type: type, units: units, isPrimary: type === primary });
+      accumulated += units;
+      if (sem === 'Spring') { sem = 'Fall'; }
+      else { sem = 'Spring'; yr++; }
+      safety++;
+    }
+    return list;
+  }
+
+  function computeTermPlan() {
+    const list = buildTermList();
+    if (list.length === 0) return null;
+    const primary = svcType();
+    const hasChanges = list.some(item => item.type !== primary);
+    if (!hasChanges) return null;
+
+    const ftCount = list.filter(i => i.type === 'ft').length;
+    const ptCount = list.filter(i => i.type === 'pt').length;
+
+    let summary;
+    if (ftCount > 0 && ptCount > 0) {
+      summary = ftCount + ' full-time and ' + ptCount + ' part-time semester' + (list.length === 1 ? '' : 's');
+    } else if (ftCount > 0) {
+      summary = ftCount + ' full-time semester' + (ftCount === 1 ? '' : 's');
+    } else {
+      summary = ptCount + ' part-time semester' + (ptCount === 1 ? '' : 's');
+    }
+
+    return {
+      totalSems: list.length,
+      summary: summary,
+      ftCount: ftCount,
+      ptCount: ptCount,
+      calendarYears: list.length * 0.5
+    };
+  }
+
+  function renderTermList() {
+    if (!termList) return;
+    const list = buildTermList();
+
+    termList.innerHTML = '';
+    if (list.length === 0) {
+      termList.innerHTML = '<div class="whatif-empty">Complete your service plan above to see your projected semesters here.</div>';
+      $('clear-switch-btn').style.display = 'none';
+      return;
+    }
+
+    list.forEach(item => {
+      const row = document.createElement('div');
+      row.className = 'term-row' + (item.isPrimary ? '' : ' modified');
+
+      const name = document.createElement('span');
+      name.className = 'term-row-name';
+      name.textContent = item.sem + ' ' + item.yr;
+      row.appendChild(name);
+
+      const seg = document.createElement('div');
+      seg.className = 'term-row-segment';
+
+      ['ft', 'pt'].forEach(t => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = t === 'ft' ? 'FT' : 'PT';
+        btn.setAttribute('aria-label', (t === 'ft' ? 'Full-time' : 'Part-time') + ' for ' + item.sem + ' ' + item.yr);
+        if (item.type === t) btn.classList.add('active');
+        btn.addEventListener('click', () => setTermType(item.key, t));
+        seg.appendChild(btn);
+      });
+
+      row.appendChild(seg);
+      termList.appendChild(row);
+    });
+
+    const primary = svcType();
+    const hasChanges = list.some(item => item.type !== primary);
+    $('clear-switch-btn').style.display = hasChanges ? '' : 'none';
+  }
+
+  function setTermType(key, type) {
+    const primary = svcType();
+    if (type === primary) {
+      delete termSelections[key];
+    } else {
+      termSelections[key] = type;
+    }
+    renderTermList();
+    updateWhatIf();
+  }
+
   /* ========== STEP BADGES ========== */
   function updateBadges() {
     const s1ok = ss.value && sy.value && gs.value && gy.value && !errT.classList.contains('visible');
     const s2ok = s1ok && Object.values(funded).some(Boolean);
-    const s3ok = svcType() && sm.value && syr.value && !errS.classList.contains('visible');
+    const s3ok = isServicePlanComplete() && sm.value && syr.value && !errS.classList.contains('visible');
 
     setBadge('badge1', s1ok);
     setBadge('badge2', s2ok);
@@ -976,7 +1543,7 @@
 
     const has1 = sv && syv && gv && gyv && !errT.classList.contains('visible');
     const has2 = has1 && terms.length > 0;
-    const has3 = st && smv && syrv;
+    const has3 = isServicePlanComplete() && smv && syrv;
 
     if (!has1 || !has2 || !has3) {
       resWrap.classList.remove('visible');
@@ -984,6 +1551,7 @@
         showMsg(msgInc, 'Complete Step 3 (service type and start date) to see your results.');
       }
       updateBadges();
+      updateWhatIf();
       return;
     }
 
@@ -995,6 +1563,7 @@
       showMsg(errS, 'Your expected service start date is before your expected graduation. Service cannot begin until you complete your program. Please adjust your service start date to see your results.');
       resWrap.classList.remove('visible');
       updateBadges();
+      updateWhatIf();
       return;
     }
 
@@ -1017,32 +1586,30 @@
 
     $('r-funded').textContent = f;
 
-    const yrsOwed = f * 0.5;
-    if (st === 'ft') {
-      $('r-owed').textContent = fmtYears(yrsOwed);
-      $('r-owed-sub').textContent = f + ' full-time semester' + (f === 1 ? '' : 's');
-    } else {
-      $('r-owed').textContent = fmtYears(f);
-      $('r-owed-sub').textContent = (f * 2) + ' part-time semester' + (f * 2 === 1 ? '' : 's');
-    }
+    const plan = computeServicePlan(f);
 
-    if (f === 0) {
+    if (!plan) {
+      $('r-owed').textContent = '0 years';
+      $('r-owed-sub').textContent = 'No funded semesters on record';
       $('r-complete').textContent = 'None owed';
       $('r-complete-sub').textContent = 'No funded semesters on record';
     } else {
+      $('r-owed').textContent = fmtYears(plan.calendarYears);
+      $('r-owed-sub').textContent = plan.summary;
+
       const startObj = svcStartSem(smv, syrv);
-      const semsNeeded = st === 'ft' ? f : f * 2;
-      $('r-complete').textContent = projectEnd(startObj, semsNeeded);
+      $('r-complete').textContent = projectEnd(startObj, plan.totalSems);
       $('r-complete-sub').textContent = 'Assumes continuous Fall/Spring service';
     }
 
-    const summary = buildSummary(f, st, smv, syrv, gv, gyv);
+    const summary = buildSummary(f, plan, smv, syrv, gv, gyv);
     $('r-summary').textContent = summary;
 
     const nb = $('r-notices');
     nb.innerHTML = '';
 
     updateBadges();
+    updateWhatIf();
   }
 
   function fmtYears(n) {
@@ -1052,14 +1619,16 @@
     return n + ' years';
   }
 
-  function buildSummary(f, st, smv, syrv, gv, gyv) {
-    if (f === 0) return 'Based on your selections, no funded Fall or Spring semesters are checked. If this does not look right, go back to Step 2 and check your funded semesters.';
-    const yrs = st === 'ft' ? f * 0.5 : f;
-    const label = st === 'ft' ? 'full-time' : 'part-time';
-    const semsNeeded = st === 'ft' ? f : f * 2;
+  function buildSummary(f, plan, smv, syrv, gv, gyv) {
+    if (f === 0 || !plan) return 'Based on your selections, no funded Fall or Spring semesters are checked. If this does not look right, go back to Step 2 and check your funded semesters.';
+
     const startObj = svcStartSem(smv, syrv);
-    const endStr = projectEnd(startObj, semsNeeded);
-    return 'Based on ' + f + ' funded semester' + (f === 1 ? '' : 's') + ', you would owe approximately ' + fmtYears(yrs) + ' of ' + label + ' service. Starting in ' + MN[smv - 1] + ' ' + syrv + ' with continuous ' + label + ' service, your obligation would be complete around ' + endStr + '.';
+    const endStr = projectEnd(startObj, plan.totalSems);
+    const startMonth = MN[smv - 1] + ' ' + syrv;
+    const yrsObligation = f * 0.5;
+    const label = plan.mode === 'ft' ? 'full-time' : 'part-time';
+
+    return 'Based on ' + f + ' funded semester' + (f === 1 ? '' : 's') + ', you would owe approximately ' + fmtYears(yrsObligation) + ' of service obligation. Starting in ' + startMonth + ' with continuous ' + label + ' service, your obligation would be complete around ' + endStr + '.';
   }
 
   function addNotice(container, txt) {
@@ -1080,15 +1649,265 @@
   $('reset-btn').addEventListener('click', () => {
     [ss, sy, gs, gy, sm, syr].forEach(el => el.value = '');
     document.querySelectorAll('input[name="svc"]').forEach(r => r.checked = false);
+    termSelections = {};
     funded = {};
     terms = [];
+    breaks = [];
     renderChecklist();
+    renderBreaksList();
+    renderTermList();
     resWrap.classList.remove('visible');
+    whatifWrap.classList.remove('visible');
+    whatifResult.classList.remove('visible');
     hideMsg(msgInc);
     $('card-ft').classList.remove('selected');
     $('card-pt').classList.remove('selected');
+    $('clear-switch-btn').style.display = 'none';
     updateBadges();
   });
+
+  /* ========== WHAT-IF ========== */
+
+  function isBreakComplete(b) {
+    return b.startSem && b.startYr && b.endSem && b.endYr;
+  }
+
+  function isBreakValid(b) {
+    if (!isBreakComplete(b)) return false;
+    return cmpSem(b.startSem, +b.startYr, b.endSem, +b.endYr) < 0;
+  }
+
+  function newBreak() {
+    return { id: ++breakId, startSem: '', startYr: '', endSem: '', endYr: '' };
+  }
+
+  function makeBreakField(labelText, breakObj, field, kind) {
+    const div = document.createElement('div');
+    div.className = 'field';
+
+    const label = document.createElement('label');
+    label.textContent = labelText;
+    div.appendChild(label);
+
+    const sel = document.createElement('select');
+
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.textContent = 'Select...';
+    sel.appendChild(placeholder);
+
+    if (kind === 'sem') {
+      ['Fall', 'Spring'].forEach(s => {
+        const o = document.createElement('option');
+        o.value = s;
+        o.textContent = s;
+        if (breakObj[field] === s) o.selected = true;
+        sel.appendChild(o);
+      });
+    } else {
+      for (let y = cy - 4; y <= cy + 12; y++) {
+        const o = document.createElement('option');
+        o.value = y;
+        o.textContent = y;
+        if (+breakObj[field] === y) o.selected = true;
+        sel.appendChild(o);
+      }
+    }
+
+    sel.addEventListener('change', () => {
+      breakObj[field] = sel.value;
+      updateWhatIf();
+    });
+
+    div.appendChild(sel);
+    return div;
+  }
+
+  function renderBreaksList() {
+    breaksList.innerHTML = '';
+
+    if (breaks.length === 0) {
+      const empty = document.createElement('div');
+      empty.className = 'whatif-empty';
+      empty.textContent = 'No breaks added yet. Click the button below to model a hypothetical pause in your service.';
+      breaksList.appendChild(empty);
+      $('clear-breaks-btn').style.display = 'none';
+      return;
+    }
+
+    breaks.forEach((b, idx) => {
+      const row = document.createElement('div');
+      row.className = 'break-row';
+
+      const top = document.createElement('div');
+      top.className = 'break-row-top';
+
+      const lab = document.createElement('div');
+      lab.className = 'break-label';
+      lab.textContent = breaks.length > 1 ? 'Break ' + (idx + 1) : 'Break';
+
+      const rm = document.createElement('button');
+      rm.type = 'button';
+      rm.className = 'break-remove';
+      rm.textContent = 'Remove';
+      rm.setAttribute('aria-label', 'Remove this break');
+      rm.addEventListener('click', () => {
+        breaks.splice(idx, 1);
+        renderBreaksList();
+        updateWhatIf();
+      });
+
+      top.appendChild(lab);
+      top.appendChild(rm);
+      row.appendChild(top);
+
+      const fields = document.createElement('div');
+      fields.className = 'break-fields';
+
+      fields.appendChild(makeBreakField('Break starts', b, 'startSem', 'sem'));
+      fields.appendChild(makeBreakField('Year', b, 'startYr', 'year'));
+      fields.appendChild(makeBreakField('Returns', b, 'endSem', 'sem'));
+      fields.appendChild(makeBreakField('Year', b, 'endYr', 'year'));
+
+      row.appendChild(fields);
+
+      const helper = document.createElement('div');
+      helper.style.cssText = 'font-size:12.5px; color:var(--text-light); margin-top:10px; line-height:1.5;';
+      helper.textContent = 'The "returns" semester is your first semester back in active service. It is not counted as time off.';
+      row.appendChild(helper);
+
+      breaksList.appendChild(row);
+    });
+
+    $('clear-breaks-btn').style.display = '';
+  }
+
+  function updateWhatIf() {
+    hideMsg(whatifErr);
+
+    // Only show the panel if main results are visible
+    if (!resWrap.classList.contains('visible')) {
+      whatifWrap.classList.remove('visible');
+      return;
+    }
+    whatifWrap.classList.add('visible');
+
+    const smv = +sm.value;
+    const syrv = +syr.value;
+    const f = countFunded();
+
+    // Render the per-term list (reflects current primary plan + any overrides)
+    renderTermList();
+
+    if (!isServicePlanComplete() || !smv || !syrv || f === 0) {
+      whatifResult.classList.remove('visible');
+      return;
+    }
+
+    // Validate breaks
+    const hasInvalidBreak = breaks.some(b => isBreakComplete(b) && !isBreakValid(b));
+    if (hasInvalidBreak) {
+      showMsg(whatifErr, 'One of your breaks has the return semester at or before the break start. The return semester should be after the break begins.');
+      whatifResult.classList.remove('visible');
+      return;
+    }
+    const validBreaks = breaks.filter(isBreakValid);
+    const hasIncompleteBreak = breaks.some(b => !isBreakComplete(b));
+
+    // Determine whether the per-term mix scenario is active
+    const termPlan = computeTermPlan();
+    const mixActive = !!termPlan;
+
+    // Nothing scenario-wise is configured yet
+    if (!mixActive && validBreaks.length === 0 && !hasIncompleteBreak) {
+      whatifResult.classList.remove('visible');
+      return;
+    }
+
+    // Waiting for valid break input (incomplete break, no other scenarios)
+    if (!mixActive && validBreaks.length === 0 && hasIncompleteBreak) {
+      whatifResult.classList.remove('visible');
+      return;
+    }
+
+    // Build the effective plan (primary OR modified from term picks)
+    const primaryPlan = computeServicePlan(f);
+    const effectivePlan = mixActive ? termPlan : primaryPlan;
+    if (!primaryPlan || !effectivePlan) {
+      whatifResult.classList.remove('visible');
+      return;
+    }
+
+    const startObj = svcStartSem(smv, syrv);
+
+    // Original end = primary plan, no breaks
+    const originalEnd = projectEndObj(startObj, primaryPlan.totalSems);
+
+    // Adjusted end = effective plan with breaks applied
+    const adjusted = projectEndWithBreaks(startObj, effectivePlan.totalSems, validBreaks);
+    const delta = semDelta(originalEnd, adjusted);
+    const negDelta = semDelta(adjusted, originalEnd);
+
+    whatifResult.classList.add('visible');
+    $('r-adjusted').textContent = adjusted.dateStr;
+
+    // Build the sub-text explaining what changed
+    const pieces = [];
+    if (mixActive) {
+      pieces.push(termPlan.summary);
+    }
+    if (validBreaks.length > 0) {
+      pieces.push(validBreaks.length === 1 ? '1 break' : validBreaks.length + ' breaks');
+    }
+
+    let directionNote = '';
+    if (delta === 0 && negDelta === 0) {
+      directionNote = 'Same as your original projection of <strong>' + originalEnd.dateStr + '</strong>.';
+    } else if (delta > 0) {
+      const years = delta * 0.5;
+      const yearText = years === 0.5 ? '6 months' : (years === 1 ? '1 year' : years + ' years');
+      directionNote = 'Pushed back by <strong>' + yearText + '</strong> from the original projection of <strong>' + originalEnd.dateStr + '</strong>.';
+    } else {
+      const years = negDelta * 0.5;
+      const yearText = years === 0.5 ? '6 months' : (years === 1 ? '1 year' : years + ' years');
+      directionNote = 'Completes <strong>' + yearText + '</strong> sooner than the original projection of <strong>' + originalEnd.dateStr + '</strong>.';
+    }
+
+    let withText = '';
+    if (pieces.length > 0) {
+      withText = ' With ' + pieces.join(' and ') + '.';
+    }
+
+    $('r-adjusted-sub').innerHTML = directionNote + withText;
+  }
+
+  $('add-break-btn').addEventListener('click', () => {
+    breaks.push(newBreak());
+    renderBreaksList();
+    updateWhatIf();
+    // Focus the first select of the new break
+    const rows = breaksList.querySelectorAll('.break-row');
+    const last = rows[rows.length - 1];
+    if (last) {
+      const firstSel = last.querySelector('select');
+      if (firstSel) firstSel.focus();
+    }
+  });
+
+  $('clear-breaks-btn').addEventListener('click', () => {
+    breaks = [];
+    renderBreaksList();
+    updateWhatIf();
+  });
+
+  $('clear-switch-btn').addEventListener('click', () => {
+    termSelections = {};
+    renderTermList();
+    updateWhatIf();
+  });
+
+  // Initial render so the empty-state message is in place
+  renderBreaksList();
 
 })();
 </script>
