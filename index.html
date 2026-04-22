@@ -80,6 +80,24 @@
   /* ===================== STEPS ===================== */
   .step { margin-bottom: 40px; }
 
+  .step.locked {
+    opacity: 0.5;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .step.locked .step-badge {
+    background: var(--border);
+    color: var(--text-light);
+  }
+  .step-lock-hint {
+    font-size: 13px;
+    color: var(--text-light);
+    font-style: italic;
+    padding-left: 46px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+  }
+
   .step-header {
     display: flex;
     align-items: center;
@@ -386,6 +404,52 @@
     opacity: 0.75;
     font-weight: 700;
     margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .r-info-btn {
+    background: none;
+    border: none;
+    color: var(--white);
+    opacity: 0.55;
+    font-size: 13px;
+    padding: 0;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    font-family: inherit;
+    line-height: 1;
+  }
+  .r-info-btn:hover {
+    opacity: 1;
+  }
+  .r-info-btn:focus-visible {
+    outline: 1.5px solid rgba(255,255,255,0.7);
+    outline-offset: 2px;
+    opacity: 1;
+    border-radius: 3px;
+  }
+
+  .r-info {
+    display: none;
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: rgba(255,255,255,0.08);
+    border-left: 2px solid var(--blue-light);
+    border-radius: 4px;
+    font-size: 12.5px;
+    line-height: 1.5;
+    opacity: 0.92;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: normal;
+    color: var(--white);
+  }
+  .r-info.visible {
+    display: block;
+    animation: fadeSlideIn 0.3s ease-out;
   }
   .r-value {
     font-size: 24px;
@@ -399,6 +463,153 @@
     line-height: 1.35;
   }
   .results-notices { margin-top: 14px; }
+
+  /* ===================== TIMELINE ===================== */
+  .timeline {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+  }
+  .timeline-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin-bottom: 24px;
+    color: var(--white);
+  }
+
+  .timeline-bar {
+    position: relative;
+    height: 50px;
+    margin: 0 20px 48px;
+  }
+  .timeline-bar::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-50%);
+    border-radius: 2px;
+  }
+
+  .timeline-segment {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 8px;
+    border-radius: 4px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.08) inset;
+  }
+  .timeline-segment.school {
+    background: var(--blue-light);
+  }
+  .timeline-segment.service {
+    background: var(--gold);
+  }
+  .timeline-segment.service.adjusted {
+    background: linear-gradient(90deg, var(--gold) 0%, var(--gold) 70%, #e8b63f 100%);
+  }
+
+  .timeline-marker {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 2.5px solid var(--navy);
+    box-shadow: 0 0 0 2px var(--white);
+    z-index: 2;
+  }
+  .timeline-marker.deadline {
+    width: 10px;
+    height: 20px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.85);
+    border: none;
+    box-shadow: 0 0 0 1px var(--navy);
+  }
+  .timeline-marker.original {
+    width: 10px;
+    height: 10px;
+    background: rgba(255,255,255,0.45);
+    border: 1.5px dashed rgba(255,255,255,0.7);
+    box-shadow: none;
+  }
+
+  .timeline-label {
+    position: absolute;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 11px;
+    line-height: 1.3;
+    text-align: center;
+    color: var(--white);
+  }
+  .timeline-label-above {
+    bottom: calc(50% + 16px);
+  }
+  .timeline-label-below {
+    top: calc(50% + 16px);
+  }
+  .timeline-label .tl-event {
+    font-weight: 700;
+    font-size: 10.5px;
+    letter-spacing: 0.4px;
+    opacity: 0.8;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .timeline-label .tl-date {
+    font-size: 12.5px;
+    font-weight: 300;
+  }
+  .timeline-label.deadline .tl-event,
+  .timeline-label.deadline .tl-date {
+    color: #fde699;
+  }
+  .timeline-label.original .tl-event,
+  .timeline-label.original .tl-date {
+    color: rgba(255,255,255,0.6);
+    font-style: italic;
+  }
+
+  .timeline-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    font-size: 12px;
+    opacity: 0.85;
+    margin-top: 6px;
+  }
+  .timeline-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--white);
+  }
+  .timeline-swatch {
+    display: inline-block;
+    width: 14px;
+    height: 8px;
+    border-radius: 3px;
+  }
+  .timeline-swatch.school { background: var(--blue-light); }
+  .timeline-swatch.service { background: var(--gold); }
+  .timeline-swatch.adjusted {
+    background: transparent;
+    border: 1.5px dashed rgba(255,255,255,0.7);
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+  }
 
   /* ===================== LEARN MORE ===================== */
   .learn-more {
@@ -574,29 +785,74 @@
   .term-row-segment {
     display: inline-flex;
     background: var(--border-light);
+    border: none;
     border-radius: 6px;
     padding: 2px;
     flex-shrink: 0;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.15s;
   }
-  .term-row-segment button {
-    background: none;
-    border: none;
+  .term-row-segment:hover {
+    background: #d0d6de;
+  }
+  .term-row-segment:focus-visible {
+    outline: 2px solid var(--navy);
+    outline-offset: 2px;
+  }
+  .term-row-segment-side {
     padding: 4px 10px;
     font-size: 11px;
     font-weight: 700;
     color: var(--text-light);
     border-radius: 4px;
-    cursor: pointer;
     transition: background 0.15s, color 0.15s;
-    font-family: inherit;
     letter-spacing: 0.5px;
+    pointer-events: none;
   }
-  .term-row-segment button:hover:not(.active) {
-    color: var(--navy);
-  }
-  .term-row-segment button.active {
+  .term-row-segment-side.active {
     background: var(--navy);
     color: var(--white);
+  }
+
+  .term-row.is-break {
+    background: var(--border-light);
+    border-color: var(--border);
+    cursor: help;
+    opacity: 0.9;
+  }
+  .term-row.is-break .term-row-name {
+    color: var(--text-light);
+    font-weight: 600;
+  }
+  .term-row-break-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+  }
+
+  /* ===================== CREDIT READOUT ===================== */
+  .credit-readout {
+    margin-top: 14px;
+    padding: 10px 14px;
+    border-radius: var(--radius-xs);
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+  .credit-readout.over {
+    background: var(--warn-bg);
+    color: var(--warn-amber);
+    border-left: 3px solid var(--warn-border);
+  }
+  .credit-readout.under {
+    background: var(--err-bg);
+    color: var(--err-red);
+    border-left: 3px solid var(--err-red);
+  }
+  .credit-readout strong {
+    font-weight: 700;
   }
 
   /* ===================== TOP AUTHORITY NOTICE ===================== */
@@ -813,6 +1069,44 @@
     .break-fields { grid-template-columns: 1fr; }
     .whatif-result-value { font-size: 22px; }
     .top-notice { padding: 14px 16px; font-size: 13.5px; }
+
+    /* Timeline vertical stacking on mobile */
+    .timeline-bar {
+      height: auto !important;
+      margin: 0 0 16px !important;
+      padding: 4px 0;
+    }
+    .timeline-bar::before {
+      top: 18px; left: 6px; right: auto;
+      bottom: 18px; width: 2px; height: auto;
+      transform: none;
+    }
+    .timeline-segment { display: none; }
+    .timeline-marker {
+      position: relative !important;
+      top: auto !important; left: 0 !important;
+      transform: none !important;
+      display: inline-block;
+      margin-right: 12px;
+      vertical-align: middle;
+    }
+    .timeline-mobile-row {
+      display: flex;
+      align-items: center;
+      padding: 8px 0;
+      gap: 12px;
+    }
+    .timeline-label {
+      position: static !important;
+      transform: none !important;
+      text-align: left !important;
+      white-space: normal !important;
+    }
+    .timeline-label .tl-event,
+    .timeline-label .tl-date {
+      display: inline;
+    }
+    .timeline-label .tl-event { margin-right: 8px; }
   }
 
   /* ===================== PRINT ===================== */
@@ -832,7 +1126,8 @@
     }
     .results h2, .r-label, .r-value, .r-sub, .results-summary { color: var(--navy) !important; opacity: 1; }
     .r-card { background: var(--blue-pale) !important; }
-    .btn, .results-actions, .learn-more, .checklist-controls { display: none !important; }
+    .btn, .results-actions, .learn-more, .checklist-controls, .r-info-btn { display: none !important; }
+    .r-info.visible { background: rgba(0,0,0,0.05) !important; color: var(--navy) !important; border-left: 2px solid var(--navy) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .checklist li.checked { background: var(--navy) !important; color: var(--white) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .reset-row { display: none; }
     .whatif { border: 2px solid var(--navy); page-break-inside: avoid; margin-top: 16px; }
@@ -842,7 +1137,17 @@
     .top-notice { background: #fef9e7 !important; border-left: 4px solid #d4a829 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; page-break-inside: avoid; }
     .switch-controls { background: var(--blue-pale) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; page-break-inside: avoid; }
     .term-list { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important; }
-    .term-row-segment button.active { background: var(--navy) !important; color: var(--white) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .term-row-segment-side.active { background: var(--navy) !important; color: var(--white) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .credit-readout.over { background: var(--warn-bg) !important; border-left: 3px solid var(--warn-border) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; page-break-inside: avoid; }
+    .timeline { border-top: 1px solid var(--border) !important; page-break-inside: avoid; }
+    .timeline-title { color: var(--navy) !important; }
+    .timeline-bar::before { background: var(--border) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .timeline-segment.school { background: var(--blue-light) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .timeline-segment.service { background: var(--gold) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .timeline-marker { background: var(--white) !important; border-color: var(--navy) !important; box-shadow: 0 0 0 2px var(--white) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .timeline-label, .timeline-legend-item { color: var(--navy) !important; }
+    .timeline-label.deadline .tl-event, .timeline-label.deadline .tl-date { color: var(--warn-amber) !important; }
+    .timeline-label.original .tl-event, .timeline-label.original .tl-date { color: var(--text-light) !important; }
   }
 </style>
 </head>
@@ -893,7 +1198,7 @@
   </div>
 
   <!-- STEP 2 -->
-  <div class="step" id="step2">
+  <div class="step locked" id="step2">
     <div class="step-header">
       <div class="step-badge" id="badge2"><span>2</span></div>
       <h2>Your Funded Semesters</h2>
@@ -908,12 +1213,12 @@
   </div>
 
   <!-- STEP 3 -->
-  <div class="step" id="step3">
+  <div class="step locked" id="step3">
     <div class="step-header">
       <div class="step-badge" id="badge3"><span>3</span></div>
       <h2>Your Service Plan</h2>
     </div>
-    <p class="step-desc">Choose whether you plan to serve full-time or part-time, and enter the month and year you expect to begin your post-graduation service role. Service must start within 6 months of graduation.</p>
+    <p class="step-desc">Choose whether you plan to serve full-time or part-time, and enter the month and year you expect to begin your post-graduation service role.</p>
     <div class="step-content">
       <label style="font-size:13px; font-weight:700; color:var(--navy); margin-bottom:10px; display:block;">Service type</label>
       <div class="radio-cards" id="radio-group">
@@ -967,20 +1272,29 @@
       <div class="results-top">
         <h2>Your Estimated Service Obligation</h2>
         <div class="results-actions">
+          <button type="button" class="btn btn-ghost" id="copy-btn">Copy plan as text</button>
           <button type="button" class="btn btn-ghost" id="print-btn">Print / Save PDF</button>
         </div>
       </div>
       <div class="results-summary" id="r-summary"></div>
       <div class="results-grid">
         <div class="r-card">
-          <div class="r-label">Funded Fall/Spring Semesters</div>
+          <div class="r-label">
+            Funded Fall/Spring Semesters
+            <button type="button" class="r-info-btn" aria-label="Show how this number is calculated" aria-expanded="false" data-target="info-funded-math">ⓘ</button>
+          </div>
           <div class="r-value" id="r-funded">0</div>
           <div class="r-sub">Finalized by MHEC after graduation</div>
+          <div class="r-info" id="info-funded-math"></div>
         </div>
         <div class="r-card">
-          <div class="r-label">Service Owed</div>
+          <div class="r-label">
+            Service Owed
+            <button type="button" class="r-info-btn" aria-label="Show how this number is calculated" aria-expanded="false" data-target="info-owed-math">ⓘ</button>
+          </div>
           <div class="r-value" id="r-owed">0</div>
           <div class="r-sub" id="r-owed-sub"></div>
+          <div class="r-info" id="info-owed-math"></div>
         </div>
         <div class="r-card">
           <div class="r-label">Projected Completion</div>
@@ -1032,6 +1346,7 @@
           <div class="term-list" id="term-list">
             <div class="whatif-empty">Complete your service plan above to see your projected semesters here.</div>
           </div>
+          <div class="credit-readout" id="credit-readout" style="display:none;"></div>
           <div class="switch-footer">
             <p class="switch-hint">Click <strong>FT</strong> or <strong>PT</strong> on any semester to change its service type. The list will grow or shrink to cover your obligation based on your picks.</p>
             <button type="button" class="text-btn" id="clear-switch-btn" style="display:none;">Reset to primary plan</button>
@@ -1234,6 +1549,43 @@
   /* ========== HELPERS ========== */
   function hideMsg(el) { el.classList.remove('visible'); el.textContent = ''; }
   function showMsg(el, txt) { el.textContent = txt; el.classList.add('visible'); }
+
+  function softScrollTo(el) {
+    if (!el) return;
+    try {
+      const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const rect = el.getBoundingClientRect();
+      const currentScroll = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+      const targetY = rect.top + currentScroll - 24;
+      const distance = targetY - currentScroll;
+
+      if (Math.abs(distance) < 20) return;
+
+      if (prefersReduced) {
+        window.scrollTo(0, Math.max(0, targetY));
+        return;
+      }
+
+      const duration = 900;
+      const startTime = performance.now();
+      const ease = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+      function step(now) {
+        const elapsed = now - startTime;
+        const t = Math.min(elapsed / duration, 1);
+        const newY = Math.max(0, currentScroll + distance * ease(t));
+        window.scrollTo(0, newY);
+        if (t < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    } catch (e) {
+      try {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } catch (e2) {
+        try { el.scrollIntoView(); } catch (e3) {}
+      }
+    }
+  }
   function svcType() { const r = document.querySelector('input[name="svc"]:checked'); return r ? r.value : null; }
 
   function isServicePlanComplete() {
@@ -1265,12 +1617,25 @@
     return null;
   }
 
+  function getBreakYearRange() {
+    const syrv = +syr.value;
+    const f = countFunded();
+    if (!syrv || f === 0) return [cy - 4, cy + 12];
+    return [syrv, syrv + f + 1];
+  }
+
   function buildTermList() {
     const primary = svcType();
     const smv = +sm.value;
     const syrv = +syr.value;
     const f = countFunded();
     if (!primary || !smv || !syrv || f === 0) return [];
+
+    const validBreaks = breaks.filter(isBreakValid);
+    const inBreak = (s, y) => validBreaks.some(b =>
+      cmpSem(s, y, b.startSem, +b.startYr) >= 0 &&
+      cmpSem(s, y, b.endSem, +b.endYr) < 0
+    );
 
     const totalUnitsOwed = f * 2;
     const startObj = svcStartSem(smv, syrv);
@@ -1281,10 +1646,14 @@
     let safety = 0;
     while (accumulated < totalUnitsOwed && safety < 50) {
       const key = sem + '-' + yr;
-      const type = termSelections[key] || primary;
-      const units = type === 'ft' ? 2 : 1;
-      list.push({ sem: sem, yr: yr, key: key, type: type, units: units, isPrimary: type === primary });
-      accumulated += units;
+      if (inBreak(sem, yr)) {
+        list.push({ sem: sem, yr: yr, key: key, type: null, units: 0, isPrimary: true, isBreak: true });
+      } else {
+        const type = termSelections[key] || primary;
+        const units = type === 'ft' ? 2 : 1;
+        list.push({ sem: sem, yr: yr, key: key, type: type, units: units, isPrimary: type === primary, isBreak: false });
+        accumulated += units;
+      }
       if (sem === 'Spring') { sem = 'Fall'; }
       else { sem = 'Spring'; yr++; }
       safety++;
@@ -1295,16 +1664,18 @@
   function computeTermPlan() {
     const list = buildTermList();
     if (list.length === 0) return null;
+    const serviceOnly = list.filter(i => !i.isBreak);
+    if (serviceOnly.length === 0) return null;
     const primary = svcType();
-    const hasChanges = list.some(item => item.type !== primary);
+    const hasChanges = serviceOnly.some(item => item.type !== primary);
     if (!hasChanges) return null;
 
-    const ftCount = list.filter(i => i.type === 'ft').length;
-    const ptCount = list.filter(i => i.type === 'pt').length;
+    const ftCount = serviceOnly.filter(i => i.type === 'ft').length;
+    const ptCount = serviceOnly.filter(i => i.type === 'pt').length;
 
     let summary;
     if (ftCount > 0 && ptCount > 0) {
-      summary = ftCount + ' full-time and ' + ptCount + ' part-time semester' + (list.length === 1 ? '' : 's');
+      summary = ftCount + ' full-time and ' + ptCount + ' part-time semester' + (serviceOnly.length === 1 ? '' : 's');
     } else if (ftCount > 0) {
       summary = ftCount + ' full-time semester' + (ftCount === 1 ? '' : 's');
     } else {
@@ -1312,11 +1683,11 @@
     }
 
     return {
-      totalSems: list.length,
+      totalSems: serviceOnly.length,
       summary: summary,
       ftCount: ftCount,
       ptCount: ptCount,
-      calendarYears: list.length * 0.5
+      calendarYears: serviceOnly.length * 0.5
     };
   }
 
@@ -1328,11 +1699,31 @@
     if (list.length === 0) {
       termList.innerHTML = '<div class="whatif-empty">Complete your service plan above to see your projected semesters here.</div>';
       $('clear-switch-btn').style.display = 'none';
+      updateCreditReadout(list);
       return;
     }
 
     list.forEach(item => {
       const row = document.createElement('div');
+
+      if (item.isBreak) {
+        row.className = 'term-row is-break';
+        row.setAttribute('title', 'This semester is part of a configured break. Remove or adjust the break above to change its service type.');
+
+        const name = document.createElement('span');
+        name.className = 'term-row-name';
+        name.textContent = item.sem + ' ' + item.yr;
+        row.appendChild(name);
+
+        const label = document.createElement('span');
+        label.className = 'term-row-break-label';
+        label.textContent = 'On break';
+        row.appendChild(label);
+
+        termList.appendChild(row);
+        return;
+      }
+
       row.className = 'term-row' + (item.isPrimary ? '' : ' modified');
 
       const name = document.createElement('span');
@@ -1340,26 +1731,79 @@
       name.textContent = item.sem + ' ' + item.yr;
       row.appendChild(name);
 
-      const seg = document.createElement('div');
-      seg.className = 'term-row-segment';
+      const toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'term-row-segment';
+      const other = item.type === 'ft' ? 'pt' : 'ft';
+      const currentLabel = item.type === 'ft' ? 'full-time' : 'part-time';
+      const otherLabel = other === 'ft' ? 'full-time' : 'part-time';
+      toggle.setAttribute('aria-label', item.sem + ' ' + item.yr + ' is currently ' + currentLabel + '. Click to switch to ' + otherLabel + '.');
+      toggle.addEventListener('click', () => setTermType(item.key, other));
 
-      ['ft', 'pt'].forEach(t => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.textContent = t === 'ft' ? 'FT' : 'PT';
-        btn.setAttribute('aria-label', (t === 'ft' ? 'Full-time' : 'Part-time') + ' for ' + item.sem + ' ' + item.yr);
-        if (item.type === t) btn.classList.add('active');
-        btn.addEventListener('click', () => setTermType(item.key, t));
-        seg.appendChild(btn);
-      });
+      const ftSide = document.createElement('span');
+      ftSide.className = 'term-row-segment-side' + (item.type === 'ft' ? ' active' : '');
+      ftSide.textContent = 'FT';
 
-      row.appendChild(seg);
+      const ptSide = document.createElement('span');
+      ptSide.className = 'term-row-segment-side' + (item.type === 'pt' ? ' active' : '');
+      ptSide.textContent = 'PT';
+
+      toggle.appendChild(ftSide);
+      toggle.appendChild(ptSide);
+      row.appendChild(toggle);
       termList.appendChild(row);
     });
 
     const primary = svcType();
-    const hasChanges = list.some(item => item.type !== primary);
+    const serviceOnly = list.filter(i => !i.isBreak);
+    const hasChanges = serviceOnly.some(item => item.type !== primary);
     $('clear-switch-btn').style.display = hasChanges ? '' : 'none';
+
+    updateCreditReadout(list);
+  }
+
+  function formatCreditDiff(years) {
+    const abs = Math.abs(years);
+    if (abs === 0.25) return '3 months';
+    if (abs === 0.5) return '6 months';
+    if (abs === 0.75) return '9 months';
+    if (abs === 1) return '1 year';
+    if (abs === 1.25) return '1 year 3 months';
+    if (abs === 1.5) return '1.5 years';
+    if (abs === 1.75) return '1 year 9 months';
+    if (abs === 2) return '2 years';
+    return abs + ' years';
+  }
+
+  function updateCreditReadout(list) {
+    const el = $('credit-readout');
+    if (!el) return;
+
+    const f = countFunded();
+    if (list.length === 0 || f === 0 || !isServicePlanComplete()) {
+      el.style.display = 'none';
+      return;
+    }
+
+    const ft = list.filter(i => i.type === 'ft').length;
+    const pt = list.filter(i => i.type === 'pt').length;
+    const creditEarned = ft * 0.5 + pt * 0.25;
+    const obligation = f * 0.5;
+    const diff = creditEarned - obligation;
+
+    if (Math.abs(diff) < 0.01) {
+      el.style.display = 'none';
+      return;
+    }
+
+    el.style.display = '';
+    if (diff > 0) {
+      el.className = 'credit-readout over';
+      el.innerHTML = '<strong>Note:</strong> this mix serves <strong>' + formatCreditDiff(diff) + ' more</strong> than the minimum required by your funding.';
+    } else {
+      el.className = 'credit-readout under';
+      el.innerHTML = '<strong>Note:</strong> this mix falls short of your required service by <strong>' + formatCreditDiff(-diff) + '</strong>.';
+    }
   }
 
   function setTermType(key, type) {
@@ -1373,7 +1817,230 @@
     updateWhatIf();
   }
 
+  /* ========== TIMELINE ========== */
+  function semToDate(sem, yr, pos) {
+    // pos: 'start' | 'mid' | 'end' of the semester
+    const y = +yr;
+    if (sem === 'Spring') {
+      if (pos === 'start') return new Date(y, 0, 15);
+      if (pos === 'end')   return new Date(y, 4, 15);
+      return new Date(y, 2, 1);
+    }
+    if (sem === 'Summer') {
+      if (pos === 'start') return new Date(y, 4, 15);
+      if (pos === 'end')   return new Date(y, 7, 15);
+      return new Date(y, 5, 15);
+    }
+    // Fall
+    if (pos === 'start') return new Date(y, 7, 15);
+    if (pos === 'end')   return new Date(y, 11, 15);
+    return new Date(y, 9, 15);
+  }
+
+  function completionStrToDate(str) {
+    // 'December 2028' or 'May 2029'
+    const parts = str.split(' ');
+    const mo = parts[0];
+    const yr = +parts[1];
+    const m = mo === 'December' ? 11 : 4;
+    const d = mo === 'December' ? 15 : 15;
+    return new Date(yr, m, d);
+  }
+
+  function fmtShortDate(d) {
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return months[d.getMonth()] + ' ' + d.getFullYear();
+  }
+
+  function renderTimeline() {
+    const container = $('timeline');
+    const bar = $('timeline-bar');
+    const adjLegend = $('timeline-legend-adjusted');
+    if (!container || !bar) return;
+
+    // Only render if main results are computed
+    if (!resWrap.classList.contains('visible')) {
+      container.style.display = 'none';
+      return;
+    }
+
+    const f = countFunded();
+    const smv = +sm.value, syrv = +syr.value;
+    if (!ss.value || !sy.value || !gs.value || !gy.value || !smv || !syrv || f === 0 || !isServicePlanComplete()) {
+      container.style.display = 'none';
+      return;
+    }
+
+    const plan = computeServicePlan(f);
+    if (!plan) {
+      container.style.display = 'none';
+      return;
+    }
+
+    container.style.display = '';
+
+    // Compute milestone dates
+    const programStart = semToDate(ss.value, +sy.value, 'start');
+    const graduation = semToDate(gs.value, +gy.value, 'end');
+    const serviceDeadline = new Date(graduation);
+    serviceDeadline.setMonth(serviceDeadline.getMonth() + 6);
+    const serviceStart = new Date(+syrv, smv - 1, 15);
+    const startObj = svcStartSem(smv, syrv);
+    const originalCompletion = completionStrToDate(projectEnd(startObj, plan.totalSems));
+
+    // Check for what-if scenarios
+    const validBreaks = breaks.filter(isBreakValid);
+    const termPlan = computeTermPlan();
+    const effectiveTotal = termPlan ? termPlan.totalSems : plan.totalSems;
+    const adjustedCompletion = completionStrToDate(
+      projectEndWithBreaks(startObj, effectiveTotal, validBreaks).dateStr
+    );
+    const hasAdjusted = adjustedCompletion.getTime() !== originalCompletion.getTime();
+
+    // Timeline span: program start to the later of the two completions
+    const lastDate = adjustedCompletion > originalCompletion ? adjustedCompletion : originalCompletion;
+    // Add a small buffer at both ends so markers don't hug the edges
+    const totalMs = lastDate - programStart;
+    const bufferMs = totalMs * 0.04;
+    const spanStart = new Date(programStart.getTime() - bufferMs);
+    const spanEnd = new Date(lastDate.getTime() + bufferMs);
+    const span = spanEnd - spanStart;
+
+    const pct = d => ((d - spanStart) / span) * 100;
+
+    // Detect mobile (vertical) vs desktop (horizontal) rendering
+    const isMobile = window.matchMedia('(max-width: 600px)').matches;
+
+    bar.innerHTML = '';
+
+    if (isMobile) {
+      renderTimelineMobile(bar, {
+        programStart, graduation, serviceDeadline, serviceStart,
+        originalCompletion, adjustedCompletion, hasAdjusted
+      });
+    } else {
+      renderTimelineDesktop(bar, pct, {
+        programStart, graduation, serviceDeadline, serviceStart,
+        originalCompletion, adjustedCompletion, hasAdjusted
+      });
+    }
+
+    adjLegend.style.display = hasAdjusted ? '' : 'none';
+  }
+
+  function renderTimelineDesktop(bar, pct, d) {
+    const { programStart, graduation, serviceDeadline, serviceStart,
+            originalCompletion, adjustedCompletion, hasAdjusted } = d;
+
+    const addSegment = (cls, startPct, endPct) => {
+      const s = document.createElement('div');
+      s.className = 'timeline-segment ' + cls;
+      s.style.left = startPct + '%';
+      s.style.width = (endPct - startPct) + '%';
+      bar.appendChild(s);
+    };
+
+    const addMarker = (cls, position) => {
+      const m = document.createElement('div');
+      m.className = 'timeline-marker' + (cls ? ' ' + cls : '');
+      m.style.left = position + '%';
+      bar.appendChild(m);
+    };
+
+    const addLabel = (position, placement, event, date, cls) => {
+      const l = document.createElement('div');
+      l.className = 'timeline-label timeline-label-' + placement + (cls ? ' ' + cls : '');
+      l.style.left = position + '%';
+      l.innerHTML = '<span class="tl-event">' + event + '</span><span class="tl-date">' + fmtShortDate(date) + '</span>';
+      bar.appendChild(l);
+    };
+
+    // Segments
+    addSegment('school', pct(programStart), pct(graduation));
+    const endCompletion = hasAdjusted && adjustedCompletion > originalCompletion ? adjustedCompletion : originalCompletion;
+    addSegment('service' + (hasAdjusted ? ' adjusted' : ''), pct(serviceStart), pct(endCompletion));
+
+    // Markers and labels (alternate above/below to avoid overlap)
+    // Order along the timeline: program start, graduation, service deadline, service start, completion(s)
+    addMarker('', pct(programStart));
+    addLabel(pct(programStart), 'above', 'Program Start', programStart);
+
+    addMarker('', pct(graduation));
+    addLabel(pct(graduation), 'below', 'Graduation', graduation);
+
+    // Service deadline - only show if service start is at or after it
+    // (otherwise the deadline isn't a constraining milestone for this scholar)
+    if (serviceStart >= serviceDeadline) {
+      const gapGradToDeadline = pct(serviceDeadline) - pct(graduation);
+      const gapDeadlineToStart = pct(serviceStart) - pct(serviceDeadline);
+      if (gapGradToDeadline > 5 && gapDeadlineToStart > 5) {
+        addMarker('deadline', pct(serviceDeadline));
+        addLabel(pct(serviceDeadline), 'above', 'Service must begin by', serviceDeadline, 'deadline');
+      }
+    }
+
+    addMarker('', pct(serviceStart));
+    addLabel(pct(serviceStart), 'below', 'Service Start', serviceStart);
+
+    // Completion(s)
+    if (hasAdjusted) {
+      // Show original as ghost marker, adjusted as solid
+      addMarker('original', pct(originalCompletion));
+      addLabel(pct(originalCompletion), 'above', 'Original projection', originalCompletion, 'original');
+      addMarker('', pct(adjustedCompletion));
+      addLabel(pct(adjustedCompletion), 'below', 'Adjusted completion', adjustedCompletion);
+    } else {
+      addMarker('', pct(originalCompletion));
+      addLabel(pct(originalCompletion), 'below', 'Projected Completion', originalCompletion);
+    }
+  }
+
+  function renderTimelineMobile(bar, d) {
+    const { programStart, graduation, serviceDeadline, serviceStart,
+            originalCompletion, adjustedCompletion, hasAdjusted } = d;
+
+    const addRow = (markerCls, event, date, labelCls) => {
+      const row = document.createElement('div');
+      row.className = 'timeline-mobile-row';
+
+      const marker = document.createElement('div');
+      marker.className = 'timeline-marker' + (markerCls ? ' ' + markerCls : '');
+      row.appendChild(marker);
+
+      const label = document.createElement('div');
+      label.className = 'timeline-label' + (labelCls ? ' ' + labelCls : '');
+      label.innerHTML = '<span class="tl-event">' + event + '</span><span class="tl-date">' + fmtShortDate(date) + '</span>';
+      row.appendChild(label);
+
+      bar.appendChild(row);
+    };
+
+    addRow('', 'Program Start', programStart);
+    addRow('', 'Graduation', graduation);
+    if (serviceStart >= serviceDeadline) {
+      addRow('deadline', 'Service must begin by', serviceDeadline, 'deadline');
+    }
+    addRow('', 'Service Start', serviceStart);
+    if (hasAdjusted) {
+      addRow('original', 'Original projection', originalCompletion, 'original');
+      addRow('', 'Adjusted completion', adjustedCompletion);
+    } else {
+      addRow('', 'Projected Completion', originalCompletion);
+    }
+  }
+
+  // Re-render timeline on window resize (debounced) to handle mobile/desktop transition
+  let tlResizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(tlResizeTimer);
+    tlResizeTimer = setTimeout(renderTimeline, 150);
+  });
+
   /* ========== STEP BADGES ========== */
+  // Track which steps have been unlocked so we only scroll on the initial unlock
+  let step2WasUnlocked = false;
+  let step3WasUnlocked = false;
+
   function updateBadges() {
     const s1ok = ss.value && sy.value && gs.value && gy.value && !errT.classList.contains('visible');
     const s2ok = s1ok && Object.values(funded).some(Boolean);
@@ -1382,6 +2049,29 @@
     setBadge('badge1', s1ok);
     setBadge('badge2', s2ok);
     setBadge('badge3', s3ok);
+
+    // Gating: Step 2 unlocks once Step 1 is complete; Step 3 unlocks once Step 2 has a funded semester
+    const step2El = $('step2');
+    const step3El = $('step3');
+    const step2Unlocked = s1ok;
+    const step3Unlocked = s2ok;
+
+    step2El.classList.toggle('locked', !step2Unlocked);
+    step3El.classList.toggle('locked', !step3Unlocked);
+
+    // Scroll to newly-unlocked steps the first time they unlock in this session
+    if (step2Unlocked && !step2WasUnlocked) {
+      step2WasUnlocked = true;
+      setTimeout(() => softScrollTo(step2El), 150);
+    }
+    if (step3Unlocked && !step3WasUnlocked) {
+      step3WasUnlocked = true;
+      setTimeout(() => softScrollTo(step3El), 150);
+    }
+
+    // If a step becomes locked again (e.g., user cleared data), reset the flag
+    if (!step2Unlocked) step2WasUnlocked = false;
+    if (!step3Unlocked) step3WasUnlocked = false;
   }
 
   function setBadge(id, ok) {
@@ -1580,8 +2270,8 @@
 
     if (wasHidden) {
       setTimeout(() => {
-        resWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 80);
+        softScrollTo(resWrap);
+      }, 150);
     }
 
     $('r-funded').textContent = f;
@@ -1593,6 +2283,8 @@
       $('r-owed-sub').textContent = 'No funded semesters on record';
       $('r-complete').textContent = 'None owed';
       $('r-complete-sub').textContent = 'No funded semesters on record';
+      $('info-funded-math').textContent = 'This is the count of Fall and Spring semesters you checked in Step 2. Summer semesters are excluded because they do not count toward service time.';
+      $('info-owed-math').textContent = 'No funded semesters selected yet.';
     } else {
       $('r-owed').textContent = fmtYears(plan.calendarYears);
       $('r-owed-sub').textContent = plan.summary;
@@ -1600,6 +2292,16 @@
       const startObj = svcStartSem(smv, syrv);
       $('r-complete').textContent = projectEnd(startObj, plan.totalSems);
       $('r-complete-sub').textContent = 'Assumes continuous Fall/Spring service';
+
+      // Populate math explanations
+      $('info-funded-math').textContent = 'This is the count of Fall and Spring semesters you checked in Step 2. Summer semesters are excluded because they do not count toward service time.';
+
+      const obligation = f * 0.5;
+      if (plan.mode === 'ft') {
+        $('info-owed-math').textContent = f + ' funded semester' + (f === 1 ? '' : 's') + ' × 0.5 years of obligation per semester = ' + fmtYears(obligation) + ' owed. At full-time service (0.5 years of obligation met per semester), that takes ' + f + ' Fall/Spring semester' + (f === 1 ? '' : 's') + '.';
+      } else {
+        $('info-owed-math').textContent = f + ' funded semester' + (f === 1 ? '' : 's') + ' × 0.5 years of obligation per semester = ' + fmtYears(obligation) + ' owed. At part-time service (0.25 years of obligation met per semester), that takes ' + (f * 2) + ' Fall/Spring semester' + (f * 2 === 1 ? '' : 's') + '.';
+      }
     }
 
     const summary = buildSummary(f, plan, smv, syrv, gv, gyv);
@@ -1609,6 +2311,7 @@
     nb.innerHTML = '';
 
     updateBadges();
+    renderBreaksList();
     updateWhatIf();
   }
 
@@ -1646,6 +2349,128 @@
 
   $('print-btn').addEventListener('click', () => { try { window.print(); } catch(e) {} });
 
+  // Info toggles on result cards
+  document.querySelectorAll('.r-info-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target');
+      const panel = document.getElementById(targetId);
+      if (!panel) return;
+      const isVisible = panel.classList.contains('visible');
+      panel.classList.toggle('visible', !isVisible);
+      btn.setAttribute('aria-expanded', (!isVisible).toString());
+    });
+  });
+
+  function buildPlanText() {
+    const lines = [];
+    lines.push('COHEN SCHOLARS PROGRAM: SERVICE OBLIGATION PLAN');
+    lines.push('Generated ' + now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }));
+    lines.push('(Planning estimate only. MHEC determines your official service obligation.)');
+    lines.push('');
+
+    lines.push('PROGRAM TIMELINE');
+    lines.push('  Start: ' + ss.value + ' ' + sy.value);
+    lines.push('  Expected graduation: ' + gs.value + ' ' + gy.value);
+    lines.push('');
+
+    const f = countFunded();
+    lines.push('FUNDED FALL/SPRING SEMESTERS (' + f + ' total)');
+    if (terms.length > 0) {
+      const fundedList = terms.filter(t => funded[t.sem + '-' + t.yr]).map(t => '  - ' + t.sem + ' ' + t.yr);
+      lines.push(fundedList.length ? fundedList.join('\n') : '  (none selected)');
+    }
+    lines.push('');
+
+    const st = svcType();
+    lines.push('SERVICE PLAN');
+    lines.push('  Service type: ' + (st === 'ft' ? 'Full-time' : 'Part-time'));
+    lines.push('  Expected service start: ' + MN[+sm.value - 1] + ' ' + syr.value);
+    lines.push('');
+
+    const plan = computeServicePlan(f);
+    if (plan) {
+      const startObj = svcStartSem(+sm.value, +syr.value);
+      const graduation = semToDate(gs.value, +gy.value, 'end');
+      const serviceDeadline = new Date(graduation);
+      serviceDeadline.setMonth(serviceDeadline.getMonth() + 6);
+      const serviceStartDate = new Date(+syr.value, +sm.value - 1, 15);
+      lines.push('RESULTS');
+      lines.push('  Obligation: ' + fmtYears(f * 0.5));
+      lines.push('  Calendar service time: ' + fmtYears(plan.calendarYears) + ' (' + plan.summary + ')');
+      if (serviceStartDate >= serviceDeadline) {
+        lines.push('  Service must begin by: ' + fmtShortDate(serviceDeadline));
+      }
+      lines.push('  Projected completion: ' + projectEnd(startObj, plan.totalSems));
+      lines.push('  Assumes continuous Fall/Spring service');
+      lines.push('');
+    }
+
+    // What-if scenarios
+    const validBreaks = breaks.filter(isBreakValid);
+    const termPlan = computeTermPlan();
+    if (validBreaks.length > 0 || termPlan) {
+      lines.push('WHAT-IF SCENARIOS');
+
+      if (validBreaks.length > 0) {
+        lines.push('  Breaks:');
+        validBreaks.forEach(b => {
+          lines.push('    - From ' + b.startSem + ' ' + b.startYr + ', returning ' + b.endSem + ' ' + b.endYr);
+        });
+      }
+
+      if (termPlan) {
+        lines.push('  Mixed service plan: ' + termPlan.summary);
+      }
+
+      if (plan) {
+        const startObj = svcStartSem(+sm.value, +syr.value);
+        const primaryTotal = plan.totalSems;
+        const effectiveTotal = termPlan ? termPlan.totalSems : primaryTotal;
+        const originalEnd = projectEndObj(startObj, primaryTotal).dateStr;
+        const adjusted = projectEndWithBreaks(startObj, effectiveTotal, validBreaks).dateStr;
+        lines.push('  Adjusted projected completion: ' + adjusted);
+        lines.push('  (Original projection: ' + originalEnd + ')');
+      }
+      lines.push('');
+    }
+
+    lines.push('---');
+    lines.push('Questions? Contact the Cohen Scholars Program: cohenscholars@jhu.edu');
+    return lines.join('\n');
+  }
+
+  $('copy-btn').addEventListener('click', async () => {
+    const text = buildPlanText();
+    const btn = $('copy-btn');
+    const original = btn.textContent;
+
+    const showConfirm = (msg) => {
+      btn.textContent = msg;
+      btn.disabled = true;
+      setTimeout(() => { btn.textContent = original; btn.disabled = false; }, 1800);
+    };
+
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text);
+        showConfirm('✓ Copied!');
+      } else {
+        // Fallback for older browsers
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showConfirm('✓ Copied!');
+      }
+    } catch (e) {
+      showConfirm('Copy failed');
+    }
+  });
+
   $('reset-btn').addEventListener('click', () => {
     [ss, sy, gs, gy, sm, syr].forEach(el => el.value = '');
     document.querySelectorAll('input[name="svc"]').forEach(r => r.checked = false);
@@ -1663,7 +2488,12 @@
     $('card-ft').classList.remove('selected');
     $('card-pt').classList.remove('selected');
     $('clear-switch-btn').style.display = 'none';
+    step2WasUnlocked = false;
+    step3WasUnlocked = false;
     updateBadges();
+    // Soft scroll back to the top so the scholar sees Step 1
+    const header = document.querySelector('.header');
+    if (header) softScrollTo(header);
   });
 
   /* ========== WHAT-IF ========== */
@@ -1705,7 +2535,8 @@
         sel.appendChild(o);
       });
     } else {
-      for (let y = cy - 4; y <= cy + 12; y++) {
+      const [minYr, maxYr] = getBreakYearRange();
+      for (let y = minYr; y <= maxYr; y++) {
         const o = document.createElement('option');
         o.value = y;
         o.textContent = y;
@@ -1725,6 +2556,13 @@
 
   function renderBreaksList() {
     breaksList.innerHTML = '';
+
+    // Auto-clear break year selections that fall outside the current service window
+    const [minYr, maxYr] = getBreakYearRange();
+    breaks.forEach(b => {
+      if (b.startYr && (+b.startYr < minYr || +b.startYr > maxYr)) b.startYr = '';
+      if (b.endYr && (+b.endYr < minYr || +b.endYr > maxYr)) b.endYr = '';
+    });
 
     if (breaks.length === 0) {
       const empty = document.createElement('div');
@@ -1885,12 +2723,15 @@
     breaks.push(newBreak());
     renderBreaksList();
     updateWhatIf();
-    // Focus the first select of the new break
+    // Focus the first select of the new break, with a soft scroll
     const rows = breaksList.querySelectorAll('.break-row');
     const last = rows[rows.length - 1];
     if (last) {
+      softScrollTo(last);
       const firstSel = last.querySelector('select');
-      if (firstSel) firstSel.focus();
+      if (firstSel) {
+        setTimeout(() => firstSel.focus({ preventScroll: true }), 400);
+      }
     }
   });
 
