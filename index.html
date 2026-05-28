@@ -1372,7 +1372,7 @@
     <summary>Understanding the service obligation rules</summary>
     <div class="learn-body">
       <h4>Why are summers excluded?</h4>
-      <p>Per clarification from the Maryland Higher Education Commission and the Nurse Support Program II, only Fall and Spring semesters count toward incurring or fulfilling service time. Summer Cohen funding does not add service time and cannot be used to fulfill it. Summer funding may, however, factor into the dollar amount subject to repayment if service requirements are not met. That is a separate calculation handled by the program office.</p>
+      <p>According to the Maryland Higher Education Commission and the Nurse Support Program II, only Fall and Spring semesters count toward incurring or fulfilling service time. Summer Cohen funding does not add service time and cannot be used to fulfill it. Summer funding may, however, factor into the dollar amount subject to repayment if service requirements are not met. That is a separate calculation handled by the program office.</p>
 
       <h4>How service time is calculated</h4>
       <p>Each funded Fall or Spring semester equals 0.5 year of service obligation:</p>
@@ -1387,6 +1387,9 @@
 
       <h4>When must service begin?</h4>
       <p>Within 6 months after completion of your degree or certificate program. Service cannot be fulfilled before program completion. Post-graduation service must be continuous across Fall and Spring at a single site.</p>
+
+      <h4>When does my service obligation start counting?</h4>
+      <p>Only Fall and Spring terms count toward completing your obligation, the same way only Fall and Spring funding adds to it. Summer service is real work, but it does not move you closer to finishing. So if you begin your role in the summer, or in May once spring classes have ended, your service clock starts with the following Fall. The calculator shows which term it counts from, just under your projected completion date.</p>
 
       <h4>What about leaves of absence or self-pay semesters?</h4>
       <p>A semester without Cohen funding does not create service obligation. If you have a self-pay semester, a leave of absence, or a gap in funding, leave that semester unchecked in Step 2. Only semesters with confirmed Cohen funding count.</p>
@@ -1453,21 +1456,39 @@
     return out;
   }
 
-  function gradDeadline(gs, gy) {
-    let m = gs === 'Spring' ? 4 : gs === 'Summer' ? 7 : 11;
-    const d = new Date(gy, m, 15);
-    d.setMonth(d.getMonth() + 6);
-    return MN[d.getMonth()] + ' ' + d.getFullYear();
-  }
-
   function gradAnchorDate(gs, gy) {
     let m = gs === 'Spring' ? 4 : gs === 'Summer' ? 7 : 11;
     return new Date(gy, m, 15);
   }
 
+  // JHU SON academic calendar boundaries (0-indexed months).
+  // Earliest month service can begin = when the program is realistically
+  // complete. Spring coursework ends in May and Fall in December. Summer
+  // graduates often finish coursework in spring, so May is the floor for
+  // both Spring and Summer graduations.
+  function gradCompletionFloorMonth(sem) {
+    if (sem === 'Fall') return 11;    // December
+    return 4;                          // May (Spring and Summer)
+  }
+  function semEndMonth(sem) {
+    if (sem === 'Spring') return 4;   // May (finals end early-to-mid May)
+    if (sem === 'Summer') return 7;   // August (classes end mid-August)
+    return 11;                         // December (finals end mid-to-late December)
+  }
+
   function svcStartSem(month, year) {
-    if (month >= 1 && month <= 5) return { sem: 'Spring', yr: year };
-    return { sem: 'Fall', yr: year };
+    // Map the service start month to the first Fall or Spring term the
+    // scholar can serve in full. Spring teaching ends by mid-May, so a May
+    // start counts from Fall. Fall teaching ends in December, so a December
+    // start counts from the following Spring. Summer never counts toward
+    // service, so May through November all resolve to that year's Fall.
+    if (month >= 1 && month <= 4) return { sem: 'Spring', yr: year };  // Jan-Apr: Spring in session
+    if (month === 12) return { sem: 'Spring', yr: year + 1 };          // December: next Spring
+    return { sem: 'Fall', yr: year };                                  // May-Nov: Fall
+  }
+
+  function svcStartSemFromInputs(month, year) {
+    return svcStartSem(month, year);
   }
 
   function projectEnd(startObj, semsNeeded) {
@@ -1638,7 +1659,7 @@
     );
 
     const totalUnitsOwed = f * 2;
-    const startObj = svcStartSem(smv, syrv);
+    const startObj = svcStartSemFromInputs(smv, syrv);
     let sem = startObj.sem, yr = startObj.yr;
 
     let accumulated = 0;
@@ -1885,7 +1906,7 @@
     const serviceDeadline = new Date(graduation);
     serviceDeadline.setMonth(serviceDeadline.getMonth() + 6);
     const serviceStart = new Date(+syrv, smv - 1, 15);
-    const startObj = svcStartSem(smv, syrv);
+    const startObj = svcStartSemFromInputs(smv, syrv);
     const originalCompletion = completionStrToDate(projectEnd(startObj, plan.totalSems));
 
     // Check for what-if scenarios
@@ -2245,19 +2266,26 @@
       return;
     }
 
-    const ga = gradAnchorDate(gv, gyv);
-    const sa = new Date(syrv, smv - 1, 15);
-    const sixMo = new Date(ga); sixMo.setMonth(sixMo.getMonth() + 6);
+    // Block service starts before the program is realistically complete.
+    // Floor is the completion month for the graduation term (Spring/Summer -> May,
+    // Fall -> December), not the term's start month.
+    const svcYM = syrv * 12 + (smv - 1);
+    const gradFloorYM = gyv * 12 + gradCompletionFloorMonth(gv);
+    const gradSemEndYM = gyv * 12 + semEndMonth(gv);
 
-    if (sa < ga) {
-      showMsg(errS, 'Your expected service start date is before your expected graduation. Service cannot begin until you complete your program. Please adjust your service start date to see your results.');
+    if (svcYM < gradFloorYM) {
+      showMsg(errS, 'Your expected service start date is before you would finish your program. Service cannot begin until after you complete your degree. Please adjust your service start date to see your results.');
       resWrap.classList.remove('visible');
       updateBadges();
       updateWhatIf();
       return;
     }
 
-    if (sa > sixMo) {
+    // 6-month deadline check (uses end-of-semester as anchor)
+    const ga = gradAnchorDate(gv, gyv);
+    const sa = new Date(syrv, smv - 1, 15);
+    const sixMo = new Date(ga); sixMo.setMonth(sixMo.getMonth() + 6);
+    if (svcYM >= gradSemEndYM && sa > sixMo) {
       showMsg(warnS, 'Your expected service start date is more than 6 months after your expected graduation. Program rules require service to begin within 6 months of completing your program.');
     }
 
@@ -2289,9 +2317,9 @@
       $('r-owed').textContent = fmtYears(plan.calendarYears);
       $('r-owed-sub').textContent = plan.summary;
 
-      const startObj = svcStartSem(smv, syrv);
+      const startObj = svcStartSemFromInputs(smv, syrv);
       $('r-complete').textContent = projectEnd(startObj, plan.totalSems);
-      $('r-complete-sub').textContent = 'Assumes continuous Fall/Spring service';
+      $('r-complete-sub').textContent = 'Counting from ' + startObj.sem + ' ' + startObj.yr + ', assuming continuous Fall/Spring service';
 
       // Populate math explanations
       $('info-funded-math').textContent = 'This is the count of Fall and Spring semesters you checked in Step 2. Summer semesters are excluded because they do not count toward service time.';
@@ -2325,7 +2353,7 @@
   function buildSummary(f, plan, smv, syrv, gv, gyv) {
     if (f === 0 || !plan) return 'Based on your selections, no funded Fall or Spring semesters are checked. If this does not look right, go back to Step 2 and check your funded semesters.';
 
-    const startObj = svcStartSem(smv, syrv);
+    const startObj = svcStartSemFromInputs(smv, syrv);
     const endStr = projectEnd(startObj, plan.totalSems);
     const startMonth = MN[smv - 1] + ' ' + syrv;
     const yrsObligation = f * 0.5;
@@ -2389,7 +2417,7 @@
 
     const plan = computeServicePlan(f);
     if (plan) {
-      const startObj = svcStartSem(+sm.value, +syr.value);
+      const startObj = svcStartSemFromInputs(+sm.value, +syr.value);
       const graduation = semToDate(gs.value, +gy.value, 'end');
       const serviceDeadline = new Date(graduation);
       serviceDeadline.setMonth(serviceDeadline.getMonth() + 6);
@@ -2423,7 +2451,7 @@
       }
 
       if (plan) {
-        const startObj = svcStartSem(+sm.value, +syr.value);
+        const startObj = svcStartSemFromInputs(+sm.value, +syr.value);
         const primaryTotal = plan.totalSems;
         const effectiveTotal = termPlan ? termPlan.totalSems : primaryTotal;
         const originalEnd = projectEndObj(startObj, primaryTotal).dateStr;
@@ -2676,7 +2704,7 @@
       return;
     }
 
-    const startObj = svcStartSem(smv, syrv);
+    const startObj = svcStartSemFromInputs(smv, syrv);
 
     // Original end = primary plan, no breaks
     const originalEnd = projectEndObj(startObj, primaryPlan.totalSems);
